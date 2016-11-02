@@ -16,7 +16,6 @@ namespace Assets.Scripts.UI
         void Start()
         {
             bgImage = GetComponent<Image>();
-            
         }
 
         void Update()
