@@ -25,7 +25,7 @@ namespace Assets.Scripts.Model {
             // Random stats for testing
             constStats.DodgeChance = 0;
             constStats.MagicResist = 1;
-            constStats.PhysicalResist = 2;
+            constStats.PhysicalResist = 20000000;
             constStats.TotalHealth = 3;
             constStats.TotalMovement = 4;
         }

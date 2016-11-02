@@ -6,7 +6,7 @@ using System;
 
 namespace Assets.Scripts.UI
 {
-    public class CharacterInfoPanel : MonoBehaviour
+    public class InfoPanel : MonoBehaviour
     {
         public Text info;
         public Image bgImage;

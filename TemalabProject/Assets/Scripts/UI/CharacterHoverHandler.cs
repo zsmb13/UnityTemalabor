@@ -5,7 +5,7 @@ using Assets.Scripts.Model;
 namespace Assets.Scripts.UI {
     public class CharacterHoverHandler : MonoBehaviour {
 
-        public CharacterInfoPanel infoPanel;
+        public InfoPanel infoPanel;
 
         void OnMouseOver()
         {
