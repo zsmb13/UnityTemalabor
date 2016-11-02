@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Model.Skills;
+using System;
 
 namespace Assets.Scripts.Model {
     public class Character : MonoBehaviour, Unit {
@@ -20,7 +21,18 @@ namespace Assets.Scripts.Model {
             turnStats.SelectedSkill = new BasicAttack();
 
             constStats = new ConstStats();
+
+            // Random stats for testing
             constStats.DodgeChance = 0;
+            constStats.MagicResist = 1;
+            constStats.PhysicalResist = 2;
+            constStats.TotalHealth = 3;
+            constStats.TotalMovement = 4;
+        }
+
+        public ConstStats GetConstStats()
+        {
+            return constStats;
         }
 
         public void OnDodge(int animationDelay) {
@@ -46,12 +58,12 @@ namespace Assets.Scripts.Model {
         }
 
         public bool TryPhysicalDodge() {
-            float rand = Random.Range(0, 100);
+            float rand = UnityEngine.Random.Range(0, 100);
             return constStats.DodgeChance >= rand;
         }
     
         public bool TryMagicDodge() {
-            float rand = Random.Range(0, 100);
+            float rand = UnityEngine.Random.Range(0, 100);
             return constStats.DodgeChance >= rand;
         }
 
