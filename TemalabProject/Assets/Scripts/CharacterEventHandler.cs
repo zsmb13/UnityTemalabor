@@ -33,4 +33,16 @@ public class CharacterEventHandler : MonoBehaviour {
         Character character = GetComponent<Character>();
         character.MyOnClick();
     }
+
+    void OnMouseOver()
+    {
+        Character character = GetComponent<Character>();
+        character.MyOnMouseOver();
+    }
+
+    void OnMouseExit()
+    {
+        Character character = GetComponent<Character>();
+        character.MyMouseExit();
+    }
 }
