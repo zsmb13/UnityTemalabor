@@ -17,7 +17,42 @@ namespace Assets.Scripts.Model {
     
         void Start() {
             turnStats = new TurnStats();
-            turnStats.SelectedSkill = new Walk();
+            turnStats.SelectedSkill = new BasicAttack();
+
+            constStats = new ConstStats();
+            constStats.DodgeChance = 0;
+        }
+
+        public void OnDodge(int animationDelay) {
+            Animator animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
+            animator.SetTrigger("Dodge");
+        }
+
+        public Result OnMagicDamage(int damage, int animationDelay) {
+            Animator animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
+            animator.SetTrigger("Damaged");
+            // health -= damage
+            // if(health <= 0) SetTrigger("Death");
+            // etc...
+            Result result = new Result();
+            result.DamageDone = damage;
+            result.Killed = false;
+            return result;
+        }
+
+        public void OnAttack() {
+            Animator animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
+            animator.SetTrigger("Attack");
+        }
+
+        public bool TryPhysicalDodge() {
+            float rand = Random.Range(0, 100);
+            return constStats.DodgeChance >= rand;
+        }
+    
+        public bool TryMagicDodge() {
+            float rand = Random.Range(0, 100);
+            return constStats.DodgeChance >= rand;
         }
 
         public void Init(int team, ConstStats stats) {

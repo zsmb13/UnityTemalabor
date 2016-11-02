@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Assets.Scripts.Model {
     public class Result {
-        int DamageDone { get; set; }
-        bool Killed { get; set; }
+        public int DamageDone { get; set; }
+        public bool Killed { get; set; }
     }
 }
