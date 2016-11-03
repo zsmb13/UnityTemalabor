@@ -13,15 +13,15 @@ namespace Assets.Scripts.Model.Characters {
             
             ConstStats constStats = new ConstStats();
             // TODO use actual stats
-            constStats.DodgeChance = 0;
+            constStats.DodgeChance = 50;
             constStats.MagicResist = 1;
             constStats.PhysicalResist = 200;
             constStats.TotalHealth = 3;
             constStats.TotalMovement = 4;
 
             List<Skill> skills = new List<Skill>();
-            skills.Add(new Walk());
             skills.Add(new BasicAttack_Pyromancer());
+            skills.Add(new Walk());
             
             
 

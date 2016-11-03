@@ -17,7 +17,7 @@ namespace Assets.Scripts.Model {
         private Animator animator;
 
         public virtual void Start() {
-            animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
+            animator = gameObject.transform.GetComponent<Animator>();
         }
 
         public void AfterAttack(Character target, Result result) {
