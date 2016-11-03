@@ -5,7 +5,7 @@ using System.Text;
 using Assets.Scripts.Model;
 
 namespace Assets.Scripts.Model.Skills {
-    public class BasicAttack : Skill {
+    public class BasicAttack_Pyromancer : Skill {
         public override void Execute(Character source, object target) {
             if (!IsValidTarget(target)) {
                 return;
