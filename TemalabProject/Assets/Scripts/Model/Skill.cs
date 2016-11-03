@@ -10,13 +10,13 @@ namespace Assets.Scripts.Model {
         string name;
         string description;
 
-        public abstract void Execute(Character source, Unit target);
+        public abstract void Execute(Character source, object target);
 
         public abstract double GetRange();
 
-        public abstract bool IsAvailable(TurnStats stats);
+        public abstract bool IsAvailable(TurnStats turnStats);
 
-        protected abstract bool IsValidTarget(Unit target);
+        protected abstract bool IsValidTarget(object target);
 
     }
 

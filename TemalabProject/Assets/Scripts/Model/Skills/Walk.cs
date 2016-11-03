@@ -6,14 +6,14 @@ using System.Text;
 
 namespace Assets.Scripts.Model.Skills {
     public class Walk : Skill {
-        public override void Execute(Character source, Unit target) {
+        public override void Execute(Character source, object target) {
             if(!IsValidTarget(target)) {
                 return;
             }
 
-            MyTerrain terrain = target as MyTerrain;
+            GameTerrain terrain = target as GameTerrain;
             NavMeshAgent agent = source.GetComponent<NavMeshAgent>();
-            agent.SetDestination(terrain.lastClickPosition);
+            agent.SetDestination(terrain.LastClickPosition);
         }
 
         public override double GetRange() {
@@ -24,8 +24,8 @@ namespace Assets.Scripts.Model.Skills {
             return true;
         }
 
-        protected override bool IsValidTarget(Unit target) {
-            return target is MyTerrain;
+        protected override bool IsValidTarget(object target) {
+            return target is GameTerrain;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Assets.Scripts.UI {
         void OnMouseOver()
         {
             Character character = GetComponent<Character>();
-            ConstStats constStats = character.GetConstStats();
+            ConstStats constStats = character.ConstStats;
             infoPanel.ShowConstInfo(constStats.ToString());
         }
 

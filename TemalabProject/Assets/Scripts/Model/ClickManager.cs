@@ -7,20 +7,20 @@ namespace Assets.Scripts.Model {
 
         private Character selected = null;
 
-        public void ClickedOn(Unit unit) {
-            if(unit is Character) {
+        public void ClickedOn(object clickTarget) {
+            if(clickTarget is Character) {
                 if(selected == null) {
-                    selected = unit as Character;
+                    selected = clickTarget as Character;
                 }
                 else {
-                    selected.GiveTarget(unit);
+                    selected.GiveTarget(clickTarget);
                     // TODO Remove later
                     RemoveSelected();
                 }
             }
             else {
                 if(selected != null) {
-                    selected.GiveTarget(unit);
+                    selected.GiveTarget(clickTarget);
                     // TODO Remove later
                     RemoveSelected();
                 }

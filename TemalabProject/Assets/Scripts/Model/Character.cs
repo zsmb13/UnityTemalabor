@@ -1,84 +1,112 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Model.Skills;
-using System;
 
 namespace Assets.Scripts.Model {
-    public class Character : MonoBehaviour, Unit {
+    public abstract class Character : MonoBehaviour {
 
         public ClickManager clickManager;
 
-        ConstStats constStats;
-        GameStats gameStats;
-        TurnStats turnStats;
+        public ConstStats ConstStats { get; set; }
+        public GameStats GameStats { get; set; }
+        public TurnStats TurnStats { get; set; }
 
-        Skill deploySkill;  
-        List<Skill> skills = new List<Skill>();
-    
-        void Start() {
-            turnStats = new TurnStats();
-            turnStats.SelectedSkill = new BasicAttack();
+        public Skill DeploySkill { get; set; }
+        public List<Skill> Skills { get; set; }
 
-            constStats = new ConstStats();
+        private Animator animator;
 
-            // Random stats for testing
-            constStats.DodgeChance = 0;
-            constStats.MagicResist = 1;
-            constStats.PhysicalResist = 20000000;
-            constStats.TotalHealth = 3;
-            constStats.TotalMovement = 4;
+        public virtual void Start() {
+            animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
         }
 
-        public ConstStats GetConstStats()
-        {
-            return constStats;
+        public void AfterAttack(Character target, Result result) {
+            // empty
+        }
+
+        public void AfterDefense(Character source, Result result) {
+            // empty
+        }
+
+        public void GiveTarget(object target) {
+            TurnStats.SelectedSkill.Execute(this, target);
+        }
+
+        public void Init(ConstStats constStats, List<Skill> skills) {
+            // TODO get team number from somewhere
+
+            this.ConstStats = constStats;
+            this.Skills = skills;
+            this.DeploySkill = new Deploy();
+
+            // TODO temporary for testing
+            this.TurnStats = new TurnStats();
+            this.TurnStats.SelectedSkill = skills[0];
+
+            this.GameStats = new GameStats();
+            this.GameStats.Cooldown = 0;
+            this.GameStats.Deployed = false;
+            this.GameStats.RemainingHealth = ConstStats.TotalHealth;
+        }
+
+        public void NotifyClicked() {
+            if (GameStats.Cooldown == 0) {
+                clickManager.ClickedOn(this);
+            }
+            else {
+                Debug.Log("on cooldown");
+            }
+        }
+
+        public void OnAttack() {
+            animator.SetTrigger("Attack");
         }
 
         public void OnDodge(int animationDelay) {
-            Animator animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
             animator.SetTrigger("Dodge");
         }
 
         public Result OnMagicDamage(int damage, int animationDelay) {
-            Animator animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
             animator.SetTrigger("Damaged");
             // health -= damage
             // if(health <= 0) SetTrigger("Death");
             // etc...
-            Result result = new Result();
-            result.DamageDone = damage;
-            result.Killed = false;
+            Result result = new Result(damage, false);
             return result;
         }
 
-        public void OnAttack() {
-            Animator animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
-            animator.SetTrigger("Attack");
+        public Result OnPhysicalDamage(int damage, int animationDelay) {
+            animator.SetTrigger("Damaged");
+            // health -= damage
+            // if(health <= 0) SetTrigger("Death");
+            // etc...
+            Result result = new Result(damage, false);
+            return result;
+        }
+
+        public void OnTurnStart() {
+            this.GameStats.Cooldown--;
+
+            this.TurnStats.ActionPoints = 1;
+            this.TurnStats.RemainingMovement = ConstStats.TotalMovement;
+            this.TurnStats.SelectedSkill = GameStats.Deployed ? Skills[0] : DeploySkill;
+            this.TurnStats.ActiveAbilityUsed = false;
+        }
+
+        public void OnTurnEnd() {
+            // empty
+        }
+
+        public bool TryMagicDodge() {
+            float rand = UnityEngine.Random.Range(0, 100);
+            return ConstStats.DodgeChance >= rand;
         }
 
         public bool TryPhysicalDodge() {
             float rand = UnityEngine.Random.Range(0, 100);
-            return constStats.DodgeChance >= rand;
-        }
-    
-        public bool TryMagicDodge() {
-            float rand = UnityEngine.Random.Range(0, 100);
-            return constStats.DodgeChance >= rand;
+            return ConstStats.DodgeChance >= rand;
         }
 
-        public void Init(int team, ConstStats stats) {
-            this.constStats = stats;
-            this.gameStats.Team = team;
-        }
-
-        public void GiveTarget(Unit target) {
-            turnStats.SelectedSkill.Execute(this, target);
-        }
-
-        public void MyOnClick() {
-            clickManager.ClickedOn(this);
-        }
 
     }
 }

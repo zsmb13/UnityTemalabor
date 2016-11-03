@@ -6,14 +6,14 @@ using Assets.Scripts.Model;
 
 namespace Assets.Scripts.Model.Skills {
     public class BasicAttack : Skill {
-        public override void Execute(Character source, Unit target) {
+        public override void Execute(Character source, object target) {
             if (!IsValidTarget(target)) {
                 return;
             }
 
             Character enemy = target as Character;
 
-            Result result = new Result();
+            Result result = new Result(0, false);
             if (enemy.TryMagicDodge()) {
                 enemy.OnDodge(0);
             }
@@ -35,7 +35,7 @@ namespace Assets.Scripts.Model.Skills {
             return true;
         }
 
-        protected override bool IsValidTarget(Unit target) {
+        protected override bool IsValidTarget(object target) {
             return target is Character;
         }
     }

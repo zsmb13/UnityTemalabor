@@ -12,8 +12,8 @@ namespace Assets.Scripts.Model {
             if (GetComponent<TerrainCollider>().Raycast(ray, out hit, Mathf.Infinity)) {
                 //agent.SetDestination(hit.point);
 
-                MyTerrain terrain = GetComponent<MyTerrain>();
-                terrain.MyOnClick(hit.point);
+                GameTerrain terrain = GetComponent<GameTerrain>();
+                terrain.NotifyClicked(hit.point);
             }
         }
 

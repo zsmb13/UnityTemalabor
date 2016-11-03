@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 
 namespace Assets.Scripts.Model {
-    public class MyTerrain : MonoBehaviour, Unit {
+    public class GameTerrain : MonoBehaviour {
 
-        public Vector3 lastClickPosition;
+        public Vector3 LastClickPosition { get; set; }
 
         public ClickManager clickManager;
 
-        public void MyOnClick(Vector3 position) {
-            this.lastClickPosition = position;
+        public void NotifyClicked(Vector3 position) {
+            LastClickPosition = position;
             clickManager.ClickedOn(this);
         }
 

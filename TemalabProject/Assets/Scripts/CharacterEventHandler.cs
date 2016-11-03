@@ -31,6 +31,6 @@ public class CharacterEventHandler : MonoBehaviour {
         //animator.SetTrigger("Attack");
 
         Character character = GetComponent<Character>();
-        character.MyOnClick();
+        character.NotifyClicked();
     }
 }
