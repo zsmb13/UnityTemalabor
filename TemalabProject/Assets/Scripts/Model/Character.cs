@@ -58,7 +58,11 @@ namespace Assets.Scripts.Model {
             }
         }
 
-        public void OnAttack() {
+        public void OnAttack(Character target) {
+            Vector3 dir = target.transform.position - this.transform.position;
+            float step = 100000; //inf
+            Vector3 newDir = Vector3.RotateTowards(transform.forward, dir, step, 0.0F);
+            transform.rotation = Quaternion.LookRotation(newDir);
             animator.SetTrigger("Attack");
         }
 

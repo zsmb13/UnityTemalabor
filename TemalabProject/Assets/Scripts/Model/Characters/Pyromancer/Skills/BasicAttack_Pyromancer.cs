@@ -31,7 +31,7 @@ namespace Assets.Scripts.Model.Skills {
                 result = enemy.OnMagicDamage(damage, 0);
             }
 
-            source.OnAttack();
+            source.OnAttack(enemy);
 
             // afterattack
             // afterdefense

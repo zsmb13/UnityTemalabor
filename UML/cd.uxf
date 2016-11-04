@@ -18,7 +18,7 @@ Character
 +GiveTarget(target : object)
 +Init(stats: ConstStats, skills: List&lt;Skill)
 +NotifyClicked()
-+OnAttack(animation: string)
++OnAttack(target: Character, animation: string)
 +OnDodge(animationDelay: int)
 +OnMagicDamage(damage: int, animationDelay: int) : Result
 +OnPhysicalDamage(damage: int, animationDelay: int) : Result
