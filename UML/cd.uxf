@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.2">
+<diagram program="umlet" version="14.1.1">
   <zoom_level>10</zoom_level>
   <element>
     <id>UMLClass</id>
@@ -131,8 +131,8 @@ Cooldown : int
 Description : string
 Name : string
 --
-/+Execute(source: Unit, target: Unit)/
-/+GetRange() : double/
+/+Execute(source: Character, target: object)/
+/+GetRange(source: Character) : double/
 /+IsAvailable(stats: TurnStats) : bool/
 /-IsValid(target : Unit) : bool/</panel_attributes>
     <additional_attributes/>

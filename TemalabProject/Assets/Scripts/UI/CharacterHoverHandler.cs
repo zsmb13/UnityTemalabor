@@ -11,7 +11,8 @@ namespace Assets.Scripts.UI {
         {
             Character character = GetComponent<Character>();
             ConstStats constStats = character.ConstStats;
-            infoPanel.ShowConstInfo(constStats.ToString());
+            Skill selectedSkill = character.TurnStats.SelectedSkill;
+            infoPanel.ShowConstInfo(constStats.ToString(), selectedSkill.ToString());
         }
 
         void OnMouseExit()

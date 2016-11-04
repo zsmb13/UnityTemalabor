@@ -24,7 +24,7 @@ namespace Assets.Scripts.Model.Skills {
             source.GameStats.Deployed = true;
         }
 
-        public override double GetRange() {
+        public override double GetRange(Character source) {
             return 10;
         }
 

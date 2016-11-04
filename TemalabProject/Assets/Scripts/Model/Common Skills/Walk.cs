@@ -16,8 +16,8 @@ namespace Assets.Scripts.Model.Skills {
             agent.SetDestination(terrain.LastClickPosition);
         }
 
-        public override double GetRange() {
-            return 10;
+        public override double GetRange(Character source) {
+            return source.TurnStats.RemainingMovement;
         }
 
         public override bool IsAvailable(TurnStats stats) {

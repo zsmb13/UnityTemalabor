@@ -6,17 +6,21 @@ using System.Text;
 namespace Assets.Scripts.Model {
     public abstract class Skill {
 
-        int cooldown;
-        string name;
-        string description;
+        public int cooldown;
+        public string name;
+        public string description;
 
         public abstract void Execute(Character source, object target);
 
-        public abstract double GetRange();
+        public abstract double GetRange(Character source);
 
         public abstract bool IsAvailable(TurnStats turnStats);
 
         protected abstract bool IsValidTarget(object target);
+        
+        public override string ToString() {
+            return name + ": " + description;
+        }
 
     }
 

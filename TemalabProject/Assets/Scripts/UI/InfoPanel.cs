@@ -23,10 +23,10 @@ namespace Assets.Scripts.UI
             Fade();
         }
 
-        public void ShowConstInfo(String constStats)
+        public void ShowConstInfo(String constStats, String skillInfo)
         {
             gameObject.SetActive(true);
-            info.text = constStats;
+            info.text = constStats+Environment.NewLine+skillInfo;
             displayInfo = true;
         }
 

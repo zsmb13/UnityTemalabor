@@ -6,6 +6,16 @@ using Assets.Scripts.Model;
 
 namespace Assets.Scripts.Model.Skills {
     public class BasicAttack_Pyromancer : Skill {
+
+        private int damage = 30;
+
+        public BasicAttack_Pyromancer() {
+            cooldown = 2;
+            name = "Basic attack";
+            description = String.Format("Deal {0} damage to a target unit.", damage);
+            
+        }
+
         public override void Execute(Character source, object target) {
             if (!IsValidTarget(target)) {
                 return;
@@ -18,7 +28,7 @@ namespace Assets.Scripts.Model.Skills {
                 enemy.OnDodge(0);
             }
             else {
-                result = enemy.OnMagicDamage(30, 0);
+                result = enemy.OnMagicDamage(damage, 0);
             }
 
             source.OnAttack();
@@ -27,7 +37,7 @@ namespace Assets.Scripts.Model.Skills {
             // afterdefense
         }
 
-        public override double GetRange() {
+        public override double GetRange(Character source) {
             return 10;
         }
 
@@ -38,5 +48,7 @@ namespace Assets.Scripts.Model.Skills {
         protected override bool IsValidTarget(object target) {
             return target is Character;
         }
+
+
     }
 }
