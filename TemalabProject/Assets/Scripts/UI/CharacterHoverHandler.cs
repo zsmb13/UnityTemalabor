@@ -12,7 +12,20 @@ namespace Assets.Scripts.UI {
             Character character = GetComponent<Character>();
             ConstStats constStats = character.ConstStats;
             Skill selectedSkill = character.TurnStats.SelectedSkill;
-            infoPanel.ShowConstInfo(constStats.ToString(), selectedSkill.ToString());
+
+            string infosToShow = "";
+            infosToShow += constStats.ToString() + "\n";
+            infosToShow += "______________\n";
+            infosToShow += character.DeploySkill.ToString()+"\n";
+            infosToShow += "______________\n";
+            foreach(Skill s in character.Skills) {
+                infosToShow += s.ToString()+"\n";
+                infosToShow += "______________\n";
+            }
+
+            infoPanel.ShowInfo(infosToShow);
+
+
         }
 
         void OnMouseExit()

@@ -6,6 +6,14 @@ using System.Text;
 
 namespace Assets.Scripts.Model.Skills {
     public class Walk : Skill {
+
+        public Walk() {
+            cooldown = 0;
+            name = "Walk";
+            description = "Moves the character on the battlefield.";
+
+        }
+
         public override void Execute(Character source, object target) {
             if(!IsValidTarget(target)) {
                 return;

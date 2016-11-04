@@ -17,7 +17,7 @@ namespace Assets.Scripts.Model {
                           "Magic resist: " + MagicResist.ToString() + Environment.NewLine +
                           "Physical resist: " + PhysicalResist.ToString() + Environment.NewLine +
                           "Total health: " + TotalHealth.ToString() + Environment.NewLine +
-                          "Total movement: " + TotalMovement.ToString()+Environment.NewLine;
+                          "Total movement: " + TotalMovement.ToString();
 
             return info;
         }

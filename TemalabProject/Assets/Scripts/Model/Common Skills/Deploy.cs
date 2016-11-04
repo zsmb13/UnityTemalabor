@@ -6,6 +6,13 @@ using UnityEngine;
 
 namespace Assets.Scripts.Model.Skills {
     public class Deploy : Skill {
+
+        public Deploy() {
+            cooldown = 0;
+            name = "Deploy";
+            description = "Deploys the character to the battlefield.";
+        }
+
         public override void Execute(Character source, object target) {
             if (!IsValidTarget(target)) {
                 return;
