@@ -13,6 +13,8 @@ namespace Assets.Scripts.Model.Characters {
             
             ConstStats constStats = new ConstStats();
             // TODO use actual stats
+            constStats.Name = "Kyra";
+            constStats.CharacterType = "Pyromancer";
             constStats.DodgeChance = 50;
             constStats.MagicResist = 1;
             constStats.PhysicalResist = 200;

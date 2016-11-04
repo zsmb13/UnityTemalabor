@@ -34,10 +34,12 @@ Character
       <x>160</x>
       <y>340</y>
       <w>240</w>
-      <h>120</h>
+      <h>150</h>
     </coordinates>
     <panel_attributes>ConstStats
 --
+Name : string
+CharacterType : string
 DodgeChance : int
 MagicResist : int
 PhysicalResist : int
@@ -49,7 +51,7 @@ TotalMovement : double</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>160</x>
-      <y>490</y>
+      <y>510</y>
       <w>240</w>
       <h>100</h>
     </coordinates>
@@ -65,7 +67,7 @@ Team : int</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>160</x>
-      <y>620</y>
+      <y>630</y>
       <w>240</w>
       <h>100</h>
     </coordinates>
@@ -94,7 +96,7 @@ m2=1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>390</x>
-      <y>640</y>
+      <y>650</y>
       <w>180</w>
       <h>50</h>
     </coordinates>
@@ -107,7 +109,7 @@ m2=1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>390</x>
-      <y>510</y>
+      <y>530</y>
       <w>180</w>
       <h>50</h>
     </coordinates>
