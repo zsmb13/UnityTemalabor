@@ -17,11 +17,11 @@ namespace Assets.Scripts.Model {
             if (clickTarget is Character) {
                 var targetChar = (Character) clickTarget;
                 
-                if (targetChar.GameStats.Team != turnManager.CurrentTeam) {
-                    return;
-                }
-
                 if (selected == null) {
+                    if (targetChar.GameStats.Team != turnManager.CurrentTeam) {
+                        return;
+                    }
+
                     selected = targetChar;
                     //Selected event meghívása
                     if(characterSelectedEvent != null) {
