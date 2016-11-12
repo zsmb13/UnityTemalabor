@@ -88,6 +88,15 @@ namespace Assets.Scripts.Model {
             return result;
         }
 
+        public Result OnPiercingDamage(int damage, int animationDelay) {
+            animator.SetTrigger("Damaged");
+            // health -= damage
+            // if(health <= 0) SetTrigger("Death");
+            // etc...
+            Result result = new Result(damage, false);
+            return result;
+        }
+
         public void OnTurnStart() {
             this.GameStats.Cooldown--;
 

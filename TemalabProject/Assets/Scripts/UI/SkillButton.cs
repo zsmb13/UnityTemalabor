@@ -23,12 +23,12 @@ namespace Assets.Scripts.Model {
         }
 
         public void OnCharacterSelection(Character c) {
-            gameObject.SetActive(true);
             try {
                 skill = c.Skills[skillButtonNumber];
                 gameObject.GetComponentInChildren<Text>().text = skill.name;
+                gameObject.SetActive(true);
             }
-            catch (ArgumentOutOfRangeException e) {
+            catch (ArgumentOutOfRangeException) {
                 Debug.Log("Nincsen ennyiedik skill: " + skillButtonNumber);
             }
 
