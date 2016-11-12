@@ -39,7 +39,7 @@ namespace Assets.Scripts.Model.Skills {
 
         public override bool IsAvailable(TurnStats stats) {
             
-            return stats.RemainingMovement<0.1;
+            return stats.RemainingMovement>0.1;
         }
 
         protected override bool IsValidTarget(object target) {
