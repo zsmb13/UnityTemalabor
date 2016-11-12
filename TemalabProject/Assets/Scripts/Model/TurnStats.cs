@@ -8,7 +8,7 @@ namespace Assets.Scripts.Model {
 
         public int ActionPoints { get; set; }
         public bool ActiveAbilityUsed { get; set; }
-        public double RemainingMovement { get; set; }
+        public float RemainingMovement { get; set; }
         public Skill SelectedSkill { get; set; }
 
     }

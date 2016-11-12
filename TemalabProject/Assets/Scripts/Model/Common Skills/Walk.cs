@@ -20,8 +20,17 @@ namespace Assets.Scripts.Model.Skills {
             }
 
             GameTerrain terrain = target as GameTerrain;
+
+            float distance = (terrain.LastClickPosition - source.transform.position).magnitude;
+            Debug.Log(distance + " " + source.TurnStats.RemainingMovement);
+            if (distance > source.TurnStats.RemainingMovement) {
+                return;
+            }
+
             NavMeshAgent agent = source.GetComponent<NavMeshAgent>();
             agent.SetDestination(terrain.LastClickPosition);
+            source.TurnStats.RemainingMovement -= distance;
+
         }
 
         public override double GetRange(Character source) {
@@ -29,7 +38,8 @@ namespace Assets.Scripts.Model.Skills {
         }
 
         public override bool IsAvailable(TurnStats stats) {
-            return true;
+            
+            return stats.RemainingMovement<0.1;
         }
 
         protected override bool IsValidTarget(object target) {

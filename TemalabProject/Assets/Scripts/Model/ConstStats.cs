@@ -11,7 +11,7 @@ namespace Assets.Scripts.Model {
         public int MagicResist { get; set; }
         public int PhysicalResist { get; set; }
         public int TotalHealth { get; set; }
-        public double TotalMovement { get; set; }
+        public float TotalMovement { get; set; }
 
         public override String ToString()
         {

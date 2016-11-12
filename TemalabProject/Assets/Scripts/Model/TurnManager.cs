@@ -18,6 +18,7 @@ namespace Assets.Scripts.Model {
 
         void Start() {
             CurrentTeam = 1;
+            StartTurn();
         }
 
         public void EndTurn(int teamID) {
