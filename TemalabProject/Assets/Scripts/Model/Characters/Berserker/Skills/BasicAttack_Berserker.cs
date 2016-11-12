@@ -4,7 +4,7 @@ using System;
 
 namespace Assets.Scripts.Model.Skills {
 
-    public class BasicAttack_Berserker : Skill {
+    public class BasicAttack_Berserker : EnemySkill {
 
         private int damage = 50;
 
@@ -14,10 +14,7 @@ namespace Assets.Scripts.Model.Skills {
             description = String.Format("Deal {0} damage to a target unit.", damage);
         }
 
-        public override void Execute(Character source, object target) {
-            if(!IsValidTarget(target)) {
-                return;
-            }
+        protected override void OnExecute(Character source, object target) {
             Character enemy = target as Character;
 
             Result result = new Result(0, false);
@@ -41,7 +38,8 @@ namespace Assets.Scripts.Model.Skills {
         }
 
         protected override bool IsValidTarget(object target) {
-            return target is Character;
+            // TODO check range here
+            return true;
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 using Assets.Scripts.Model;
 
 namespace Assets.Scripts.Model.Skills {
-    public class BasicAttack_Pyromancer : Skill {
+    public class BasicAttack_Pyromancer : EnemySkill {
 
         private int damage = 30;
 
@@ -16,11 +16,7 @@ namespace Assets.Scripts.Model.Skills {
             
         }
 
-        public override void Execute(Character source, object target) {
-            if (!IsValidTarget(target)) {
-                return;
-            }
-
+        protected override void OnExecute(Character source, object target) {
             Character enemy = target as Character;
 
             Result result = new Result(0, false);
@@ -46,7 +42,8 @@ namespace Assets.Scripts.Model.Skills {
         }
 
         protected override bool IsValidTarget(object target) {
-            return target is Character;
+            // TODO check range here
+            return true;
         }
 
 

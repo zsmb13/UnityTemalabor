@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 
 namespace Assets.Scripts.Model.Skills {
-    public class Deploy : Skill {
+    public class Deploy : MiscSkill {
 
         public Deploy() {
             cooldown = 0;
@@ -13,11 +13,7 @@ namespace Assets.Scripts.Model.Skills {
             description = "Deploys the character to the battlefield.";
         }
 
-        public override void Execute(Character source, object target) {
-            if (!IsValidTarget(target)) {
-                return;
-            }
-
+        protected override void OnExecute(Character source, object target) {
             GameTerrain gameTerrain = target as GameTerrain;
             Vector3 targetPosition = gameTerrain.LastClickPosition;
 

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 
 namespace Assets.Scripts.Model.Skills {
-    public class Walk : Skill {
+    public class Walk : MiscSkill {
 
         public Walk() {
             cooldown = 0;
@@ -14,11 +14,7 @@ namespace Assets.Scripts.Model.Skills {
 
         }
 
-        public override void Execute(Character source, object target) {
-            if(!IsValidTarget(target)) {
-                return;
-            }
-
+        protected override void OnExecute(Character source, object target) {
             GameTerrain terrain = target as GameTerrain;
 
             float distance = (terrain.LastClickPosition - source.transform.position).magnitude;

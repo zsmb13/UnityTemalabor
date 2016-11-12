@@ -10,7 +10,23 @@ namespace Assets.Scripts.Model {
         public string name;
         public string description;
 
-        public abstract void Execute(Character source, object target);
+        public void Execute(Character source, object target) {
+            if (target is Character) {
+                if (!HasRequiredTeam(source, (Character) target)) {
+                    return; // invalid target team
+                }
+            }
+
+            if (!IsValidTarget(target)) {
+                return;
+            }
+
+            OnExecute(source, target);
+        }
+
+        protected abstract bool HasRequiredTeam(Character source, Character target);
+
+        protected abstract void OnExecute(Character source, object target);
 
         public abstract double GetRange(Character source);
 
