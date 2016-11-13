@@ -28,8 +28,23 @@ namespace Assets.Scripts.Model {
             // empty
         }
 
+        public List<Skill> GetSkills() {
+            List<Skill> skills = new List<Skill>();
+
+            if (GameStats.Deployed) {
+                // TODO make sure only the proper skills are active somewhere
+                skills.AddRange(Skills);
+            }
+            else {
+                skills.Add(DeploySkill);
+            }
+
+            return skills;
+        }
+
         public void GiveTarget(object target) {
             TurnStats.SelectedSkill.Execute(this, target);
+
         }
 
         public void Init(ConstStats constStats, List<Skill> skills) {

@@ -13,7 +13,6 @@ namespace Assets.Scripts.Model.Skills {
             cooldown = 3;
             name = "Blink";
             description = String.Format("Moving in the shadows, this character \njumps instantly to a target \nunit in {0} cells range and \ndeal {1} piercing damage. \nFinishing an enemy resets \nthe cooldown of this character. ", range, damage);
-
         }
 
         protected override void OnExecute(Character source, object target) {
@@ -57,6 +56,8 @@ namespace Assets.Scripts.Model.Skills {
 
             // afterattack
             // afterdefense
+
+            source.TurnStats.ActionPoints--;
         }
 
         public override double GetRange(Character source) {
@@ -64,12 +65,12 @@ namespace Assets.Scripts.Model.Skills {
         }
 
         public override bool IsAvailable(TurnStats stats) {
-            return true;
+            return stats.ActionPoints > 0;
         }
 
         protected override bool IsValidTarget(object target) {
             // TODO check range here
-            return target is Character;
+            return true;
         }
     }
 

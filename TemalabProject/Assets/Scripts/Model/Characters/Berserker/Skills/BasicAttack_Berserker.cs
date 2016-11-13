@@ -26,7 +26,8 @@ namespace Assets.Scripts.Model.Skills {
             source.OnAttack(enemy);
             // afterattack
             // afterdefense
-            
+
+            source.TurnStats.ActionPoints--;
         }
 
         public override double GetRange(Character source) {
@@ -34,7 +35,7 @@ namespace Assets.Scripts.Model.Skills {
         }
 
         public override bool IsAvailable(TurnStats turnStats) {
-            return true;
+            return turnStats.ActionPoints > 0;
         }
 
         protected override bool IsValidTarget(object target) {
