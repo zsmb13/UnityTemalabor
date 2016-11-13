@@ -15,6 +15,7 @@ namespace Assets.Scripts.Model {
         public List<Skill> Skills { get; set; }
 
         private Animator animator;
+        private GameObject selectionCircle;
 
         public virtual void Start() {
             animator = gameObject.transform.GetComponent<Animator>();
@@ -62,6 +63,10 @@ namespace Assets.Scripts.Model {
             this.GameStats.Cooldown = 0;
             this.GameStats.Deployed = false;
             this.GameStats.RemainingHealth = ConstStats.TotalHealth;
+
+            selectionCircle = transform.Find("Selection Circle").gameObject;
+            clickManager.characterSelectedEvent += SelectCharacter;
+            clickManager.characterDeselectedEvent += DeselectCharacter;
         }
 
         public void NotifyClicked() {
@@ -137,6 +142,14 @@ namespace Assets.Scripts.Model {
             return ConstStats.DodgeChance >= rand;
         }
 
+        public void SelectCharacter(Character character) {
+            if (character == this)
+                selectionCircle.SetActive(true);
+        }
 
+        public void DeselectCharacter(Character character) {
+            if (character == this)
+                selectionCircle.SetActive(false);
+        }
     }
 }
