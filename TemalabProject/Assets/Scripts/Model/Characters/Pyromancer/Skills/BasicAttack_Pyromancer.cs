@@ -8,13 +8,13 @@ namespace Assets.Scripts.Model.Skills {
 
     public class BasicAttack_Pyromancer : EnemySkill {
 
-        private int damage = 40;
+        private static readonly int cooldown = 2;
+        private static readonly string name = "Basic attack";
+        private static readonly string description = String.Format("Deal {0} damage to a target unit.", damage);
 
-        public BasicAttack_Pyromancer() {
-            cooldown = 2;
-            name = "Basic attack";
-            description = String.Format("Deal {0} damage to a target unit.", damage);
-        }
+        private static readonly int damage = 40;
+
+        public BasicAttack_Pyromancer() : base(name, description, cooldown) {}
 
         protected override void OnExecute(Character source, object target) {
             Character enemy = target as Character;

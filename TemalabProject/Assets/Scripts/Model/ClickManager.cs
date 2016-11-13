@@ -23,6 +23,10 @@ namespace Assets.Scripts.Model {
                     if (targetChar.GameStats.Team != turnManager.CurrentTeam) {
                         return;
                     }
+                    if (targetChar.GameStats.Cooldown > 0) {
+                        Debug.Log("That character is on Cooldown and can not be selected");
+                        return;
+                    }
 
                     selected = targetChar;
                     //Selected event meghívása

@@ -32,7 +32,7 @@ namespace Assets.Scripts.Model {
             if (s.IsAvailable(turnStats)) {
                 gameObject.SetActive(true);
                 skill = s;
-                label.text = s.name;
+                label.text = s.Name;
             }
             else {
                 Disable();

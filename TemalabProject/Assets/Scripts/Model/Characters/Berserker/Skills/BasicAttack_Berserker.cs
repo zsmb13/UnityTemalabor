@@ -3,14 +3,16 @@ using System.Collections;
 using System;
 
 namespace Assets.Scripts.Model.Skills {
-    public class BasicAttack_Berserker : EnemySkill {
-        private int damage = 40;
 
-        public BasicAttack_Berserker() {
-            cooldown = 2;
-            name = "Basic attack";
-            description = String.Format("Deal {0} damage to a target unit.", damage);
-        }
+    public class BasicAttack_Berserker : EnemySkill {
+
+        private static readonly int cooldown = 2;
+        private static readonly string name = "Basic attack";
+        private static readonly string description = String.Format("Deal {0} damage to a target unit.", damage);
+
+        private static readonly int damage = 40;
+
+        public BasicAttack_Berserker() : base(name, description, cooldown) {}
 
         protected override void OnExecute(Character source, object target) {
             Character enemy = target as Character;
@@ -19,12 +21,10 @@ namespace Assets.Scripts.Model.Skills {
             int bonusDamage = calculateBonus(source);
 
             Result result = new Result(0, false);
-            if (enemy.TryPhysicalDodge())
-            {
+            if (enemy.TryPhysicalDodge()) {
                 enemy.OnDodge(0);
             }
-            else
-            {
+            else {
                 result = enemy.OnPhysicalDamage(damage + bonusDamage, 0);
             }
             source.OnAttack(enemy);
@@ -53,5 +53,7 @@ namespace Assets.Scripts.Model.Skills {
             // TODO check range here
             return true;
         }
+
     }
+
 }

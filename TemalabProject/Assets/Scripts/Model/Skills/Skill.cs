@@ -4,11 +4,18 @@ using System.Linq;
 using System.Text;
 
 namespace Assets.Scripts.Model {
+
     public abstract class Skill {
 
-        public int cooldown;
-        public string name;
-        public string description;
+        public int Cooldown { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+
+        public Skill(string name, string description, int cooldown) {
+            Name = name;
+            Description = description;
+            Cooldown = cooldown;
+        }
 
         public void Execute(Character source, object target) {
             if (target is Character) {
@@ -33,9 +40,9 @@ namespace Assets.Scripts.Model {
         public abstract bool IsAvailable(TurnStats turnStats);
 
         protected abstract bool IsValidTarget(Character source, object target);
-        
+
         public override string ToString() {
-            return name + ": " + description;
+            return Name + ": " + Description;
         }
 
     }

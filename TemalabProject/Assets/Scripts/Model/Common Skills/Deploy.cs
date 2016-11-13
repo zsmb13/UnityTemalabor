@@ -7,11 +7,11 @@ using UnityEngine;
 namespace Assets.Scripts.Model.Skills {
     public class Deploy : MiscSkill {
 
-        public Deploy() {
-            cooldown = 0;
-            name = "Deploy";
-            description = "Deploys the character to the battlefield.";
-        }
+        private static readonly int cooldown = 0;
+        private static readonly string name = "Deploy";
+        private static readonly string description = "Deploys the character to the battlefield.";
+
+        public Deploy() : base(name, description, cooldown) {}
 
         protected override void OnExecute(Character source, object target) {
             GameTerrain gameTerrain = target as GameTerrain;

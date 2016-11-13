@@ -7,11 +7,11 @@ using System.Text;
 namespace Assets.Scripts.Model.Skills {
     public class Walk : MiscSkill {
 
-        public Walk() {
-            cooldown = 0;
-            name = "Walk";
-            description = "Moves the character on the battlefield.";
+        private static readonly int cooldown = 0;
+        private static readonly string name = "Walk";
+        private static readonly string description = "Moves the character on the battlefield.";
 
+        public Walk() : base(name, description, cooldown) {
         }
 
         protected override void OnExecute(Character source, object target) {

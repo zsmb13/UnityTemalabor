@@ -7,6 +7,8 @@ namespace Assets.Scripts.Model.Skills {
 
     public abstract class MiscSkill : Skill {
 
+        protected MiscSkill(string name, string description, int cooldown) : base(name, description, cooldown) {}
+
         protected sealed override bool HasRequiredTeam(Character source, Character target) {
             return true;
         }
