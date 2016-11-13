@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using Assets.Scripts.Model;
@@ -11,7 +12,7 @@ namespace Assets.Scripts.UI {
         public Image bgImage2;
         public float fadeTime;
 
-        public Text name;
+        public new Text name;
         public Text healthRemaining;
         public Text movementRemaining;
         public Text dodgeChance;
@@ -45,7 +46,7 @@ namespace Assets.Scripts.UI {
 
             name.text = constStats.Name;
             healthRemaining.text = gameStats.RemainingHealth.ToString();
-            movementRemaining.text = turnStats.RemainingMovement.ToString();
+            movementRemaining.text = turnStats.RemainingMovement.ToString("0.##");
             dodgeChance.text = constStats.DodgeChance.ToString();
             magicResist.text = constStats.MagicResist.ToString();
             physicalResist.text = constStats.PhysicalResist.ToString();
@@ -53,10 +54,10 @@ namespace Assets.Scripts.UI {
             Skill basicAttack = character.Skills[1];
             Skill activeSkill = character.Skills[2];
 
-            basicAttackName.text = basicAttack.name;
-            basicAttackDescription.text = basicAttack.description;
-            activeSkillName.text = activeSkill.name;
-            activeSkillDescription.text = activeSkill.description;
+            basicAttackName.text = basicAttack.Name;
+            basicAttackDescription.text = basicAttack.Description;
+            activeSkillName.text = activeSkill.Name;
+            activeSkillDescription.text = activeSkill.Description;
 
             gameObject.SetActive(true);
             FadeIn();

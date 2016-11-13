@@ -18,7 +18,7 @@ namespace Assets.Scripts.Model {
 
         void Start() {
             CurrentTeam = 1;
-            StartTurn();
+            player1.OnTurnStart();
         }
 
         public void EndTurn(int teamID) {
@@ -27,18 +27,18 @@ namespace Assets.Scripts.Model {
                 return;
             }
 
-            CurrentTeam = (CurrentTeam == 1 ? 2 : 1);
-
-            player1.OnTurnEnd();
-            player2.OnTurnEnd();
-
-            StartTurn();
-        }
-
-        private void StartTurn() {
             clickmanager.RemoveSelected();
-            player1.OnTurnStart();
-            player2.OnTurnStart();
+
+            if (CurrentTeam == 1) {
+                player1.OnTurnEnd();
+                CurrentTeam = 2;
+                player2.OnTurnStart();
+            }
+            else {
+                player2.OnTurnEnd();
+                CurrentTeam = 1;
+                player1.OnTurnStart();
+            }
         }
 
     }

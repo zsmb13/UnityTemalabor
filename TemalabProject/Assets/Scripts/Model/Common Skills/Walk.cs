@@ -34,8 +34,7 @@ namespace Assets.Scripts.Model.Skills {
         }
 
         public override bool IsAvailable(TurnStats stats) {
-            // first argument below is here for testing
-            return stats.ActionPoints > 0 && stats.RemainingMovement>0.1;
+            return stats.RemainingMovement>0.1;
         }
 
         protected override bool IsValidTarget(Character source, object target) {

@@ -29,6 +29,9 @@ namespace Assets.Scripts.Model {
             }
 
             OnExecute(source, target);
+
+            // at this point, the skill must have executed successfully
+            source.GameStats.Cooldown += Cooldown;
         }
 
         protected abstract bool HasRequiredTeam(Character source, Character target);

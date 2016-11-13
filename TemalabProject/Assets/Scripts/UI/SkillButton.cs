@@ -12,14 +12,14 @@ namespace Assets.Scripts.Model {
         private Skill skill;
         private Text label;
 
-        void Start() {
+        private void Start() {
             label = gameObject.GetComponentInChildren<Text>();
             //clickManager.characterSelectedEvent += OnCharacterSelection;
             //clickManager.characterDeselectedEvent += OnCharacterDeselection;
         }
 
         public void OnSkillButtonPressed() {
-            Character c = clickManager.getSelectedCharacter();
+            var c = clickManager.getSelectedCharacter();
             c.TurnStats.SelectedSkill = skill;
             Debug.Log("Új kijelölt skill: " + c.TurnStats.SelectedSkill);
 
@@ -28,7 +28,7 @@ namespace Assets.Scripts.Model {
 
         public void Setup(Skill s) {
             // TODO check if skil is available
-            TurnStats turnStats = clickManager.getSelectedCharacter().TurnStats;
+            var turnStats = clickManager.getSelectedCharacter().TurnStats;
             if (s.IsAvailable(turnStats)) {
                 gameObject.SetActive(true);
                 skill = s;
@@ -43,6 +43,14 @@ namespace Assets.Scripts.Model {
             gameObject.SetActive(false);
             skill = null;
             label.text = "";
+        }
+
+        private void OnMouseOver() {
+            // TODO display skill description
+        }
+
+        private void OnMouseExit() {
+            // TODO hide skill description
         }
 
     }

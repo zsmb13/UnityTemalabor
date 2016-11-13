@@ -24,9 +24,8 @@ namespace Assets.Scripts.Model.Skills {
                 targetPosition.z
             );
 
-            // TODO are we doing these things here?
             source.TurnStats.ActionPoints--;
-
+            source.TurnStats.RemainingMovement = 0;
             source.GameStats.Deployed = true;
         }
 
