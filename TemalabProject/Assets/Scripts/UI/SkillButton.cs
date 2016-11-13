@@ -2,45 +2,49 @@
 using System.Collections;
 using UnityEngine.UI;
 using System;
+using UnityEditor;
 
 namespace Assets.Scripts.Model {
+
     public class SkillButton : MonoBehaviour {
 
         public ClickManager clickManager;
-        public Skill skill { get; set; }
-        public int skillButtonNumber;
+        private Skill skill;
+        private Text label;
 
-        
         void Start() {
-            clickManager.characterSelectedEvent += OnCharacterSelection;
-            clickManager.characterDeselectedEvent += OnCharacterDeselection;
+            label = gameObject.GetComponentInChildren<Text>();
+            //clickManager.characterSelectedEvent += OnCharacterSelection;
+            //clickManager.characterDeselectedEvent += OnCharacterDeselection;
         }
 
         public void OnSkillButtonPressed() {
             Character c = clickManager.getSelectedCharacter();
-            c.TurnStats.SelectedSkill=skill;
+            c.TurnStats.SelectedSkill = skill;
             Debug.Log("Új kijelölt skill: " + c.TurnStats.SelectedSkill);
+
+            Setup(skill); // hide it if it's no longer available, etc.
         }
 
-        public void OnCharacterSelection(Character c) {
-            try {
-                skill = c.Skills[skillButtonNumber];
-                gameObject.GetComponentInChildren<Text>().text = skill.name;
+        public void Setup(Skill s) {
+            // TODO check if skil is available
+            TurnStats turnStats = clickManager.getSelectedCharacter().TurnStats;
+            if (s.IsAvailable(turnStats)) {
                 gameObject.SetActive(true);
+                skill = s;
+                label.text = s.name;
             }
-            catch (ArgumentOutOfRangeException) {
-                Debug.Log("Nincsen ennyiedik skill: " + skillButtonNumber);
+            else {
+                Disable();
             }
-
         }
 
-
-        public void OnCharacterDeselection(Character c) {
+        public void Disable() {
             gameObject.SetActive(false);
             skill = null;
-            gameObject.GetComponentInChildren<Text>().text = "";
-            //Debug.Log("asd");
+            label.text = "";
         }
 
     }
+
 }

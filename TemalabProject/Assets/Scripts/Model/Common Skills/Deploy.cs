@@ -24,6 +24,9 @@ namespace Assets.Scripts.Model.Skills {
                 targetPosition.z
             );
 
+            // TODO are we doing these things here?
+            source.TurnStats.ActionPoints--;
+
             source.GameStats.Deployed = true;
         }
 
@@ -32,7 +35,7 @@ namespace Assets.Scripts.Model.Skills {
         }
 
         public override bool IsAvailable(TurnStats turnStats) {
-            return true;
+            return turnStats.ActionPoints > 0;
         }
 
         protected override bool IsValidTarget(object target) {

@@ -5,6 +5,7 @@ using System.Text;
 using Assets.Scripts.Model;
 
 namespace Assets.Scripts.Model.Skills {
+
     public class BasicAttack_Pyromancer : EnemySkill {
 
         private int damage = 30;
@@ -13,7 +14,6 @@ namespace Assets.Scripts.Model.Skills {
             cooldown = 2;
             name = "Basic attack";
             description = String.Format("Deal {0} damage to a target unit.", damage);
-            
         }
 
         protected override void OnExecute(Character source, object target) {
@@ -31,6 +31,8 @@ namespace Assets.Scripts.Model.Skills {
 
             // afterattack
             // afterdefense
+
+            source.TurnStats.ActionPoints--;
         }
 
         public override double GetRange(Character source) {
@@ -38,7 +40,7 @@ namespace Assets.Scripts.Model.Skills {
         }
 
         public override bool IsAvailable(TurnStats stats) {
-            return true;
+            return stats.ActionPoints > 0;
         }
 
         protected override bool IsValidTarget(object target) {
@@ -46,6 +48,6 @@ namespace Assets.Scripts.Model.Skills {
             return true;
         }
 
-
     }
+
 }
