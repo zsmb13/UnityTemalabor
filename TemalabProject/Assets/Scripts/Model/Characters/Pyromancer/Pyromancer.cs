@@ -13,16 +13,16 @@ namespace Assets.Scripts.Model.Characters {
             // TODO use actual stats
             constStats.Name = "Kyra";
             constStats.CharacterType = "Pyromancer";
-            constStats.DodgeChance = 50;
-            constStats.MagicResist = 1;
-            constStats.PhysicalResist = 200;
-            constStats.TotalHealth = 3;
-            constStats.TotalMovement = 40;
+            constStats.DodgeChance = 0;
+            constStats.MagicResist = 15;
+            constStats.PhysicalResist = 15;
+            constStats.TotalHealth = 200;
+            constStats.TotalMovement = 5;
 
             List<Skill> skills = new List<Skill>();
             skills.Add(new Walk());
             skills.Add(new BasicAttack_Pyromancer());
-            skills.Add(new BlinkTest());
+            skills.Add(new BlinkTest()); // TODO remove
 
             Init(constStats, skills);
         }

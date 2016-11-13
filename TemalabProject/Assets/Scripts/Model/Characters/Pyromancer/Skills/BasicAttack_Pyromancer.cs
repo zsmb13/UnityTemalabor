@@ -8,7 +8,7 @@ namespace Assets.Scripts.Model.Skills {
 
     public class BasicAttack_Pyromancer : EnemySkill {
 
-        private int damage = 30;
+        private int damage = 40;
 
         public BasicAttack_Pyromancer() {
             cooldown = 2;
@@ -29,8 +29,8 @@ namespace Assets.Scripts.Model.Skills {
 
             source.OnAttack(enemy);
 
-            // afterattack
-            // afterdefense
+            source.AfterAttack(enemy, result);
+            enemy.AfterDefense(source, result);
 
             source.TurnStats.ActionPoints--;
         }
@@ -43,7 +43,7 @@ namespace Assets.Scripts.Model.Skills {
             return stats.ActionPoints > 0;
         }
 
-        protected override bool IsValidTarget(object target) {
+        protected override bool IsValidTarget(Character source, object target) {
             // TODO check range here
             return true;
         }

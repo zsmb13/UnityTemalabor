@@ -3,10 +3,8 @@ using System.Collections;
 using System;
 
 namespace Assets.Scripts.Model.Skills {
-
     public class BasicAttack_Berserker : EnemySkill {
-
-        private int damage = 50;
+        private int damage = 40;
 
         public BasicAttack_Berserker() {
             cooldown = 2;
@@ -17,17 +15,30 @@ namespace Assets.Scripts.Model.Skills {
         protected override void OnExecute(Character source, object target) {
             Character enemy = target as Character;
 
+            // Passive bonus
+            int bonusDamage = calculateBonus(source);
+
             Result result = new Result(0, false);
-            if(enemy.TryPhysicalDodge()) {
+            if (enemy.TryPhysicalDodge())
+            {
                 enemy.OnDodge(0);
-            } else {
-                result = enemy.OnPhysicalDamage(damage, 0);
+            }
+            else
+            {
+                result = enemy.OnPhysicalDamage(damage + bonusDamage, 0);
             }
             source.OnAttack(enemy);
-            // afterattack
-            // afterdefense
+
+            source.AfterAttack(enemy, result);
+            enemy.AfterDefense(source, result);
 
             source.TurnStats.ActionPoints--;
+        }
+
+        private int calculateBonus(Character source) {
+            int missingHealth = source.ConstStats.TotalHealth - source.GameStats.RemainingHealth;
+            int bonus = missingHealth/15;
+            return bonus;
         }
 
         public override double GetRange(Character source) {
@@ -38,7 +49,7 @@ namespace Assets.Scripts.Model.Skills {
             return turnStats.ActionPoints > 0;
         }
 
-        protected override bool IsValidTarget(object target) {
+        protected override bool IsValidTarget(Character source, object target) {
             // TODO check range here
             return true;
         }

@@ -12,11 +12,11 @@ namespace Assets.Scripts.Model.Characters {
             // TODO use actual stats
             constStats.Name = "Gregor";
             constStats.CharacterType = "Berserker";
-            constStats.DodgeChance = 50;
-            constStats.MagicResist = 1;
-            constStats.PhysicalResist = 200;
-            constStats.TotalHealth = 3;
-            constStats.TotalMovement = 4;
+            constStats.DodgeChance = 10;
+            constStats.MagicResist = 15;
+            constStats.PhysicalResist = 5;
+            constStats.TotalHealth = 300;
+            constStats.TotalMovement = 5;
 
             List<Skill> skills = new List<Skill>();
             skills.Add(new Walk());

@@ -38,7 +38,7 @@ namespace Assets.Scripts.Model.Skills {
             return stats.ActionPoints > 0 && stats.RemainingMovement>0.1;
         }
 
-        protected override bool IsValidTarget(object target) {
+        protected override bool IsValidTarget(Character source, object target) {
             return target is GameTerrain;
         }
     }
