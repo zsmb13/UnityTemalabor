@@ -21,7 +21,7 @@ namespace Assets.Scripts.Model.Skills {
         }
 
         public override bool IsAvailable(TurnStats turnStats) {
-            return true;
+            return turnStats.ActionPoints > 0;
         }
 
         protected override bool IsValidTarget(Character source, object target) {

@@ -39,7 +39,7 @@ namespace Assets.Scripts.Model.Skills {
         }
 
         protected override bool IsValidTarget(Character source, object target) {
-            return target is GameTerrain;
+            return source.GameStats.Deployed == false && target is GameTerrain;
         }
     }
 }

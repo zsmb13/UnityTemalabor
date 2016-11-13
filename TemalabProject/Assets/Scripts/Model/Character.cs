@@ -122,9 +122,7 @@ namespace Assets.Scripts.Model {
 
             this.TurnStats.ActionPoints = 1;
             this.TurnStats.RemainingMovement = ConstStats.TotalMovement;
-            //this.TurnStats.SelectedSkill = GameStats.Deployed ? Skills[0] : DeploySkill;
-            // TODO use the above line instead later when deployment is properly implemented
-            this.TurnStats.SelectedSkill = Skills[0];
+            this.TurnStats.SelectedSkill = GameStats.Deployed ? Skills[0] : DeploySkill;
             this.TurnStats.ActiveAbilityUsed = false;
         }
 
