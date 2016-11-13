@@ -4,6 +4,13 @@ using System.Diagnostics;
 namespace Assets.Scripts.Model.Skills {
 
     public class Charge : MiscSkill {
+
+        public Charge() {
+            cooldown = 2;
+            name = "Charge";
+            description = String.Format("This character gets +2 movement this round.");
+        }
+
         protected override void OnExecute(Character source, object target) {
             source.TurnStats.ActionPoints--;
             source.TurnStats.RemainingMovement += 2;
@@ -14,8 +21,7 @@ namespace Assets.Scripts.Model.Skills {
         }
 
         public override bool IsAvailable(TurnStats turnStats) {
-            // TODO check cooldown? Or do we already check that somewhere else?
-            return true;
+            return turnStats.ActionPoints > 0;
         }
 
         protected override bool IsValidTarget(Character source, object target) {

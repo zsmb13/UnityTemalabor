@@ -1,36 +1,23 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using Assets.Scripts.Model;
 
 namespace Assets.Scripts.UI {
+
     public class CharacterHoverHandler : MonoBehaviour {
 
-        public InfoPanel infoPanel;
+        public InfoPanel leftPanel;
 
-        void OnMouseOver()
-        {
+        void OnMouseOver() {
             Character character = GetComponent<Character>();
-            ConstStats constStats = character.ConstStats;
-            Skill selectedSkill = character.TurnStats.SelectedSkill;
-
-            string infosToShow = "";
-            infosToShow += constStats.ToString() + "\n";
-            infosToShow += "______________\n";
-            infosToShow += character.DeploySkill.ToString()+"\n";
-            infosToShow += "______________\n";
-            foreach(Skill s in character.Skills) {
-                infosToShow += s.ToString()+"\n";
-                infosToShow += "______________\n";
-            }
-
-            infoPanel.ShowInfo(infosToShow);
-
-
+            leftPanel.ShowInfo(character);
         }
 
-        void OnMouseExit()
-        {
-            infoPanel.Hide();
+        void OnMouseExit() {
+            leftPanel.Hide();
         }
+
     }
+
 }
