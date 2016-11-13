@@ -22,7 +22,7 @@ namespace Assets.Scripts.UI {
 
             movementRangeCircle.gameObject.SetActive(true);
             float remainingMovement = character.TurnStats.RemainingMovement;
-            movementRangeCircle.localScale = new Vector3(remainingMovement, remainingMovement, 1);
+            movementRangeCircle.localScale = new Vector3(remainingMovement*2, remainingMovement*2, 1);
 
         }
 
