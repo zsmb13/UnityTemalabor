@@ -17,7 +17,7 @@ namespace Assets.Scripts.Model {
                 }
             }
 
-            if (!IsValidTarget(target)) {
+            if (!IsValidTarget(source, target)) {
                 return;
             }
 
@@ -32,7 +32,7 @@ namespace Assets.Scripts.Model {
 
         public abstract bool IsAvailable(TurnStats turnStats);
 
-        protected abstract bool IsValidTarget(object target);
+        protected abstract bool IsValidTarget(Character source, object target);
         
         public override string ToString() {
             return name + ": " + description;
