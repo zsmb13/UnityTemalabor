@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Assets.Scripts.Model.Skills;
 
 namespace Assets.Scripts.Model {
+
     public abstract class Character : MonoBehaviour {
 
         public ClickManager clickManager;
@@ -29,6 +30,10 @@ namespace Assets.Scripts.Model {
             // empty
         }
 
+        public void Deselect() {
+            selectionCircle.SetActive(false);
+        }
+
         public List<Skill> GetSkills() {
             List<Skill> skills = new List<Skill>();
 
@@ -45,7 +50,6 @@ namespace Assets.Scripts.Model {
 
         public void GiveTarget(object target) {
             TurnStats.SelectedSkill.Execute(this, target);
-
         }
 
         public void Init(ConstStats constStats, List<Skill> skills) {
@@ -65,8 +69,6 @@ namespace Assets.Scripts.Model {
             this.GameStats.RemainingHealth = ConstStats.TotalHealth;
 
             selectionCircle = transform.Find("Selection Circle").gameObject;
-            clickManager.characterSelectedEvent += SelectCharacter;
-            clickManager.characterDeselectedEvent += DeselectCharacter;
         }
 
         public void NotifyClicked() {
@@ -130,6 +132,10 @@ namespace Assets.Scripts.Model {
             // empty
         }
 
+        public void Select() {
+            selectionCircle.SetActive(true);
+        }
+
         public bool TryMagicDodge() {
             float rand = UnityEngine.Random.Range(0, 100);
             return ConstStats.DodgeChance >= rand;
@@ -140,14 +146,6 @@ namespace Assets.Scripts.Model {
             return ConstStats.DodgeChance >= rand;
         }
 
-        public void SelectCharacter(Character character) {
-            if (character == this)
-                selectionCircle.SetActive(true);
-        }
-
-        public void DeselectCharacter(Character character) {
-            if (character == this)
-                selectionCircle.SetActive(false);
-        }
     }
+
 }

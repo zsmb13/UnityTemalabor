@@ -5,11 +5,10 @@ using UnityEditor;
 
 namespace Assets.Scripts.Model.Characters {
 
-    public class Pyromancer : Character
-    {
+    public class Pyromancer : Character {
+
         public void Awake() {
-            
-            ConstStats constStats = new ConstStats();
+            var constStats = new ConstStats();
             // TODO use actual stats
             constStats.Name = "Kyra";
             constStats.CharacterType = "Pyromancer";
@@ -19,7 +18,7 @@ namespace Assets.Scripts.Model.Characters {
             constStats.TotalHealth = 200;
             constStats.TotalMovement = 5;
 
-            List<Skill> skills = new List<Skill>();
+            var skills = new List<Skill>();
             skills.Add(new Walk());
             skills.Add(new BasicAttack_Pyromancer());
             skills.Add(new BlinkTest()); // TODO remove
@@ -28,5 +27,5 @@ namespace Assets.Scripts.Model.Characters {
         }
 
     }
-    
+
 }

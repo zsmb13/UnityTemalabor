@@ -18,10 +18,8 @@ namespace Assets.Scripts.Model {
         }
 
         public void Execute(Character source, object target) {
-            if (target is Character) {
-                if (!HasRequiredTeam(source, (Character) target)) {
-                    return; // invalid target team
-                }
+            if (!HasRequiredTeam(source, target)) {
+                return; // invalid target team
             }
 
             if (!IsValidTarget(source, target)) {
@@ -34,15 +32,15 @@ namespace Assets.Scripts.Model {
             source.GameStats.Cooldown += Cooldown;
         }
 
-        protected abstract bool HasRequiredTeam(Character source, Character target);
-
-        protected abstract void OnExecute(Character source, object target);
-
         public abstract double GetRange(Character source);
+
+        protected abstract bool HasRequiredTeam(Character source, object target);
 
         public abstract bool IsAvailable(TurnStats turnStats);
 
         protected abstract bool IsValidTarget(Character source, object target);
+
+        protected abstract void OnExecute(Character source, object target);
 
         public override string ToString() {
             return Name + ": " + Description;

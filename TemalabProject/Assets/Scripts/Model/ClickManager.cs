@@ -7,6 +7,11 @@ namespace Assets.Scripts.Model {
     public class ClickManager : MonoBehaviour {
 
         public TurnManager turnManager;
+
+        public Character SelectedCharacter {
+            get { return selected; }
+            private set { selected = value; }
+        }
         private Character selected = null;
 
         public delegate void CharacterEvent(Character character);
@@ -18,15 +23,16 @@ namespace Assets.Scripts.Model {
         public void ClickedOn(object clickTarget) {
             if (clickTarget is Character) {
                 var targetChar = (Character) clickTarget;
-                
+
                 if (selected == null) {
                     if (targetChar.GameStats.Team != turnManager.CurrentTeam) {
                         return;
                     }
 
-                    selected = targetChar;
+                    SelectedCharacter = targetChar;
+                    targetChar.Select();
                     //Selected event meghívása
-                    if(characterSelectedEvent != null) {
+                    if (characterSelectedEvent != null) {
                         characterSelectedEvent(selected);
                     }
                 }
@@ -51,11 +57,10 @@ namespace Assets.Scripts.Model {
             if (characterDeselectedEvent != null) {
                 characterDeselectedEvent(selected);
             }
-            selected = null;
-        }
-
-        public Character getSelectedCharacter() {
-            return selected;//TODO jobban?
+            if (SelectedCharacter != null) {
+                SelectedCharacter.Deselect();
+            }
+            SelectedCharacter = null;
         }
 
     }
