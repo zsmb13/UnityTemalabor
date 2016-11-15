@@ -4,10 +4,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>520</x>
-      <y>340</y>
+      <x>450</x>
+      <y>360</y>
       <w>450</w>
-      <h>400</h>
+      <h>370</h>
     </coordinates>
     <panel_attributes>&lt;&lt;abstract&gt;&gt;
 Character
@@ -15,13 +15,20 @@ Character
 --
 +AfterAttack(target: Character, result: Result)
 +AfterDefense(source: Character, result: Result)
++Deselect()
++GetSkills(): List&lt;Skill&gt;
++GiveTarget(target: object)
 +Init(team: int, stats: ConstStats)
-+OnAttack(animation: string)
++NotifyClicked()
++OnAttack(target: Character)
 +OnDodge(animationDelay: int)
 +OnMagicDamage(damage: int, animationDelay: int) : Result
 +OnPhysicalDamage(damage: int, animationDelay: int) : Result
-+OnTurnStart(??)
-+OnTurnEnd(??)
++OnPiercingDamage(damage: int, animationDelay: int) : Result
++OnTurnStart()
++OnTurnEnd()
++Select()
++Start()
 +TryMagicDodge() : bool
 +TryPhysicalDodge() : bool</panel_attributes>
     <additional_attributes/>
@@ -29,25 +36,27 @@ Character
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>130</x>
-      <y>340</y>
+      <x>60</x>
+      <y>360</y>
       <w>240</w>
-      <h>120</h>
+      <h>150</h>
     </coordinates>
     <panel_attributes>ConstStats
 --
+CharacterType: string
 DodgeChance : int
 MagicResist : int
+Name: string
 PhysicalResist : int
 TotalHealth : int
-TotalMovement : double</panel_attributes>
+TotalMovement : float</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>130</x>
-      <y>490</y>
+      <x>60</x>
+      <y>540</y>
       <w>240</w>
       <h>100</h>
     </coordinates>
@@ -62,8 +71,8 @@ Team : int</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>130</x>
-      <y>620</y>
+      <x>60</x>
+      <y>670</y>
       <w>240</w>
       <h>100</h>
     </coordinates>
@@ -71,15 +80,15 @@ Team : int</panel_attributes>
 --
 ActionPoints : int
 ActiveAbilityUsed : bool
-RemainingMovement : double
+RemainingMovement : float
 SelectedSkill : Skill</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>360</x>
-      <y>360</y>
+      <x>290</x>
+      <y>380</y>
       <w>180</w>
       <h>50</h>
     </coordinates>
@@ -91,8 +100,8 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>360</x>
-      <y>640</y>
+      <x>290</x>
+      <y>690</y>
       <w>180</w>
       <h>50</h>
     </coordinates>
@@ -104,8 +113,8 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>360</x>
-      <y>510</y>
+      <x>290</x>
+      <y>560</y>
       <w>180</w>
       <h>50</h>
     </coordinates>
@@ -117,28 +126,33 @@ m2=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1120</x>
-      <y>390</y>
-      <w>250</w>
-      <h>160</h>
+      <x>1050</x>
+      <y>350</y>
+      <w>390</w>
+      <h>220</h>
     </coordinates>
-    <panel_attributes>Skill
+    <panel_attributes>&lt;&lt;abstract&gt;&gt;
+Skill
 --
 Cooldown : int
 Description : string
 Name : string
 --
-+Execute(source: Unit, target: Unit)
-+GetRange() : double
-+IsAvailable(stats: TurnStats) : bool
--IsValid(target : Unit) : bool</panel_attributes>
++Execute(source: Character, target: object)
+/+GetRange(source: Character) : double/
+/#HasRequiredTeam(source: Character, target: object) : bool/
+/+IsAvailable(stats: TurnStats) : bool/
+/#IsValidTarget(source: Character, target: object) : bool/
+/#OnExecute(source: Character, target: object)/
++Skill(name: string, description: string, cooldown: int)
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>960</x>
-      <y>510</y>
+      <x>890</x>
+      <y>410</y>
       <w>180</w>
       <h>50</h>
     </coordinates>
@@ -150,8 +164,8 @@ m2=2..*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>960</x>
-      <y>410</y>
+      <x>890</x>
+      <y>370</y>
       <w>180</w>
       <h>50</h>
     </coordinates>
@@ -163,8 +177,8 @@ m2=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>530</x>
-      <y>810</y>
+      <x>460</x>
+      <y>770</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -174,19 +188,19 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>570</x>
-      <y>730</y>
+      <x>500</x>
+      <y>720</y>
       <w>30</w>
-      <h>100</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>640</x>
-      <y>810</y>
+      <x>570</x>
+      <y>770</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -196,30 +210,30 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>680</x>
-      <y>730</y>
+      <x>610</x>
+      <y>720</y>
       <w>30</w>
-      <h>100</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>790</x>
-      <y>730</y>
+      <x>720</x>
+      <y>720</y>
       <w>30</w>
-      <h>100</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>750</x>
-      <y>810</y>
+      <x>680</x>
+      <y>770</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -229,9 +243,9 @@ m2=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>520</x>
-      <y>30</y>
-      <w>290</w>
+      <x>340</x>
+      <y>150</y>
+      <w>230</w>
       <h>90</h>
     </coordinates>
     <panel_attributes>ClickManager
@@ -245,20 +259,20 @@ SelectedCharacter : Character
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>760</x>
-      <y>110</y>
+      <x>480</x>
+      <y>230</y>
       <w>30</w>
-      <h>250</h>
+      <h>150</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;230.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>850</x>
-      <y>180</y>
-      <w>160</w>
+      <x>900</x>
+      <y>240</y>
+      <w>150</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>Result
@@ -271,41 +285,41 @@ Killed : boolean
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>920</x>
-      <y>240</y>
-      <w>30</w>
+      <x>850</x>
+      <y>260</y>
+      <w>70</w>
       <h>120</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0;10.0;100.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1000</x>
-      <y>200</y>
-      <w>170</w>
-      <h>210</h>
+      <x>1040</x>
+      <y>260</y>
+      <w>100</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;150.0;10.0;150.0;190.0</additional_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0;80.0;90.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>900</x>
-      <y>730</y>
+      <x>830</x>
+      <y>720</y>
       <w>30</w>
-      <h>100</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>860</x>
-      <y>810</y>
+      <x>790</x>
+      <y>770</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -315,81 +329,35 @@ Killed : boolean
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>520</x>
-      <y>180</y>
+      <x>110</x>
+      <y>170</y>
       <w>180</w>
-      <h>80</h>
+      <h>70</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;abstract&gt;&gt;
-Unit
+    <panel_attributes>GameTerrain
 --
+LastClickPosition : Vector3
 --
-+GiveTarget(target: Unit)</panel_attributes>
++NotifyClicked()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>600</x>
-      <y>250</y>
-      <w>30</w>
-      <h>110</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>220</x>
+      <x>280</x>
       <y>180</y>
-      <w>140</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>Terrain
---
---</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>350</x>
-      <y>200</y>
-      <w>190</w>
+      <w>80</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>170.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>290</x>
-      <y>70</y>
-      <w>250</w>
-      <h>130</h>
-    </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>230.0;10.0;10.0;10.0;10.0;110.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>600</x>
-      <y>110</y>
-      <w>30</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+    <additional_attributes>60.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1050</x>
-      <y>560</y>
-      <w>100</w>
+      <x>950</x>
+      <y>450</y>
+      <w>90</w>
       <h>60</h>
     </coordinates>
     <panel_attributes>Move
@@ -397,5 +365,125 @@ Basic attack
 ...
 bg=yellow</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>610</x>
+      <y>150</y>
+      <w>180</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>TurnManager
+--
+CurrentTeam: int
+--
++EndTurn(teamID: int)
++Start()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>560</x>
+      <y>170</y>
+      <w>70</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>680</x>
+      <y>230</y>
+      <w>130</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-&gt;
+r1=player1, player2</panel_attributes>
+    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>980</x>
+      <y>610</y>
+      <w>200</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;abstract&gt;&gt;
+EnemySkill
+--
+--
+#HasRequiredTeam(...) : bool
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1070</x>
+      <y>560</y>
+      <w>30</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1240</x>
+      <y>610</y>
+      <w>200</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;abstract&gt;&gt;
+FriendlySkill
+--
+--
+#HasRequiredTeam(...) : bool
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1330</x>
+      <y>560</y>
+      <w>30</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1110</x>
+      <y>700</y>
+      <w>200</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;abstract&gt;&gt;
+MiscSkill
+--
+--
+#HasRequiredTeam(...) : bool
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1200</x>
+      <y>560</y>
+      <w>30</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
   </element>
 </diagram>

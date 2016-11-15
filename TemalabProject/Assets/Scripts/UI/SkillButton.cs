@@ -19,7 +19,7 @@ namespace Assets.Scripts.Model {
         }
 
         public void OnSkillButtonPressed() {
-            var c = clickManager.getSelectedCharacter();
+            var c = clickManager.SelectedCharacter;
             c.TurnStats.SelectedSkill = skill;
             Debug.Log("Új kijelölt skill: " + c.TurnStats.SelectedSkill);
 
@@ -28,7 +28,7 @@ namespace Assets.Scripts.Model {
 
         public void Setup(Skill s) {
             // TODO check if skil is available
-            var turnStats = clickManager.getSelectedCharacter().TurnStats;
+            var turnStats = clickManager.SelectedCharacter.TurnStats;
             if (s.IsAvailable(turnStats)) {
                 gameObject.SetActive(true);
                 skill = s;

@@ -9,8 +9,12 @@ namespace Assets.Scripts.Model.Skills {
 
         protected EnemySkill(string name, string description, int cooldown) : base(name, description, cooldown) {}
 
-        protected sealed override bool HasRequiredTeam(Character source, Character target) {
-            return source.GameStats.Team != target.GameStats.Team;
+        protected sealed override bool HasRequiredTeam(Character source, object target) {
+            var character = target as Character;
+            if (character != null) {
+                return source.GameStats.Team != character.GameStats.Team;
+            }
+            return false;
         }
 
     }
