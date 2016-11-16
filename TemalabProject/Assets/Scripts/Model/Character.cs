@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 using Assets.Scripts.Model.Skills;
 
@@ -93,39 +94,42 @@ namespace Assets.Scripts.Model {
         }
 
         public Result OnMagicDamage(int damage, int animationDelay) {
-            animator.SetTrigger("Damaged");
-            // health -= damage
-            // if(health <= 0) SetTrigger("Death");
-            // etc...
-            Result result = new Result(damage, false);
-            return result;
+            int reducedDamage = Math.Max(damage - ConstStats.MagicResist, 0);
+            return OnDamage(reducedDamage, animationDelay);
         }
 
         public Result OnPhysicalDamage(int damage, int animationDelay) {
-            animator.SetTrigger("Damaged");
-            // health -= damage
-            // if(health <= 0) SetTrigger("Death");
-            // etc...
-            Result result = new Result(damage, false);
-            return result;
+            int reducedDamage = Math.Max(damage - ConstStats.PhysicalResist, 0);
+            return OnDamage(reducedDamage, animationDelay);
         }
 
         public Result OnPiercingDamage(int damage, int animationDelay) {
-            animator.SetTrigger("Damaged");
-            // health -= damage
-            // if(health <= 0) SetTrigger("Death");
-            // etc...
-            Result result = new Result(damage, false);
+            return OnDamage(damage, animationDelay);
+        }
+
+        private Result OnDamage(int reducedDamage, int animationDelay) {
+            Result result = new Result(reducedDamage, false);
+
+            GameStats.RemainingHealth -= reducedDamage;
+
+            if (GameStats.RemainingHealth <= 0) {
+                animator.SetTrigger("Death");
+                result.Killed = true;
+            }
+            else {
+                animator.SetTrigger("Damaged");
+            }
+
             return result;
         }
 
         public void OnTurnStart() {
-            this.GameStats.Cooldown--;
+            GameStats.Cooldown--;
 
-            this.TurnStats.ActionPoints = 1;
-            this.TurnStats.RemainingMovement = ConstStats.TotalMovement;
-            this.TurnStats.SelectedSkill = GameStats.Deployed ? Skills[0] : DeploySkill;
-            this.TurnStats.ActiveAbilityUsed = false;
+            TurnStats.ActionPoints = 1;
+            TurnStats.RemainingMovement = ConstStats.TotalMovement;
+            TurnStats.SelectedSkill = GameStats.Deployed ? Skills[0] : DeploySkill;
+            TurnStats.ActiveAbilityUsed = false;
         }
 
         public void OnTurnEnd() {
