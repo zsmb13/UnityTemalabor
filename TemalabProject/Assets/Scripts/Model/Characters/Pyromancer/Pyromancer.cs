@@ -12,7 +12,7 @@ namespace Assets.Scripts.Model.Characters {
             // TODO use actual stats
             constStats.Name = "Kyra";
             constStats.CharacterType = "Pyromancer";
-            constStats.DodgeChance = 0;
+            constStats.DodgeChance = 50; // TODO use real value, 50 is for testing
             constStats.MagicResist = 15;
             constStats.PhysicalResist = 15;
             constStats.TotalHealth = 200;
@@ -24,6 +24,18 @@ namespace Assets.Scripts.Model.Characters {
             skills.Add(new BlinkTest()); // TODO remove
 
             Init(constStats, skills);
+        }
+
+        protected override float GetDeathDelay() {
+            return 0.08f;
+        }
+
+        protected override float GetDodgeDelay() {
+            return 0.98f;
+        }
+
+        protected override float GetDamagedDelay() {
+            return 0.4f;
         }
 
     }

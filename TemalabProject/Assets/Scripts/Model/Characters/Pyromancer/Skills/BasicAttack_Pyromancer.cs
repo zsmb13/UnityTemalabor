@@ -13,6 +13,7 @@ namespace Assets.Scripts.Model.Skills {
         private static readonly string description = "Deal 40 damage to a target unit.";
 
         private static readonly int damage = 40;
+        private static readonly float animationDelay = 1.08f;
 
         public BasicAttack_Pyromancer() : base(name, description, cooldown) {}
 
@@ -24,7 +25,7 @@ namespace Assets.Scripts.Model.Skills {
                 enemy.OnDodge(0);
             }
             else {
-                result = enemy.OnMagicDamage(damage, 0);
+                result = enemy.OnMagicDamage(damage, animationDelay);
             }
 
             source.OnAttack(enemy);

@@ -11,6 +11,7 @@ namespace Assets.Scripts.Model.Skills {
         private static readonly string description = "Deal 40 damage to a target unit.";
 
         private static readonly int damage = 40;
+        private static readonly float animationDelay = 0.95f;
 
         public BasicAttack_Berserker() : base(name, description, cooldown) {}
 
@@ -25,7 +26,7 @@ namespace Assets.Scripts.Model.Skills {
                 enemy.OnDodge(0);
             }
             else {
-                result = enemy.OnPhysicalDamage(damage + bonusDamage, 0);
+                result = enemy.OnPhysicalDamage(damage + bonusDamage, animationDelay);
             }
             source.OnAttack(enemy);
 

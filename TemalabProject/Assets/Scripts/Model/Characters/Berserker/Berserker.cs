@@ -26,6 +26,19 @@ namespace Assets.Scripts.Model.Characters {
             Init(constStats, skills);
         }
 
+        protected override float GetDeathDelay() {
+            return 0.2f;
+        }
+
+        protected override float GetDodgeDelay() {
+            Debug.Log("Berserker dodge delay is missing");
+            return 0;
+        }
+
+        protected override float GetDamagedDelay() {
+            return 0.2f;
+        }
+
     }
 
 }

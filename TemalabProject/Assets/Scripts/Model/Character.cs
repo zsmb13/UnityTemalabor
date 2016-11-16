@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 using Assets.Scripts.Model.Skills;
@@ -89,38 +90,71 @@ namespace Assets.Scripts.Model {
             animator.SetTrigger("Attack");
         }
 
-        public void OnDodge(int animationDelay) {
+        public void OnDodge(float animationDelay) {
+            StartCoroutine(AnimateDodge(animationDelay));
+        }
+
+        protected abstract float GetDodgeDelay();
+
+        private IEnumerator AnimateDodge(float animationDelay) {
+            float attackDelay = animationDelay;
+            float dodgeDelay = GetDodgeDelay();
+
+            yield return new WaitForSecondsRealtime(attackDelay - dodgeDelay);
+
             animator.SetTrigger("Dodge");
         }
 
-        public Result OnMagicDamage(int damage, int animationDelay) {
+        public Result OnMagicDamage(int damage, float animationDelay) {
             int reducedDamage = Math.Max(damage - ConstStats.MagicResist, 0);
             return OnDamage(reducedDamage, animationDelay);
         }
 
-        public Result OnPhysicalDamage(int damage, int animationDelay) {
+        public Result OnPhysicalDamage(int damage, float animationDelay) {
             int reducedDamage = Math.Max(damage - ConstStats.PhysicalResist, 0);
             return OnDamage(reducedDamage, animationDelay);
         }
 
-        public Result OnPiercingDamage(int damage, int animationDelay) {
+        public Result OnPiercingDamage(int damage, float animationDelay) {
             return OnDamage(damage, animationDelay);
         }
 
-        private Result OnDamage(int reducedDamage, int animationDelay) {
+        private Result OnDamage(int reducedDamage, float animationDelay) {
             Result result = new Result(reducedDamage, false);
 
             GameStats.RemainingHealth -= reducedDamage;
 
             if (GameStats.RemainingHealth <= 0) {
-                animator.SetTrigger("Death");
+                StartCoroutine(AnimateDeath(animationDelay));
                 result.Killed = true;
             }
             else {
-                animator.SetTrigger("Damaged");
+                StartCoroutine(AnimateDamage(animationDelay));
             }
 
             return result;
+        }
+
+        protected abstract float GetDamagedDelay();
+
+        private IEnumerator AnimateDamage(float animationDelay) {
+            float attackDelay = animationDelay;
+            float reactDelay = GetDamagedDelay();
+
+            yield return new WaitForSecondsRealtime(attackDelay - reactDelay);
+
+            animator.SetTrigger("Damaged");
+        }
+
+        protected abstract float GetDeathDelay();
+
+        private IEnumerator AnimateDeath(float animationDelay) {
+            float attackDelay = animationDelay;
+            float deathDelay = GetDeathDelay();
+
+            yield return new WaitForSecondsRealtime(attackDelay - deathDelay);
+
+            animator.SetTrigger("Death");
         }
 
         public void OnTurnStart() {
