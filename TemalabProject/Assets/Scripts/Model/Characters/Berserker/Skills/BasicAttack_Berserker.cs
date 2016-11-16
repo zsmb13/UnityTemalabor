@@ -8,7 +8,7 @@ namespace Assets.Scripts.Model.Skills {
 
         private static readonly int cooldown = 2;
         private static readonly string name = "Basic attack";
-        private static readonly string description = String.Format("Deal {0} damage to a target unit.", damage);
+        private static readonly string description = "Deal 40 damage to a target unit.";
 
         private static readonly int damage = 40;
 
