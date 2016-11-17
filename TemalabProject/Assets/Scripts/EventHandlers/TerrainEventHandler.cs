@@ -3,8 +3,7 @@ using System.Collections;
 
 namespace Assets.Scripts.Model {
     public class TerrainEventHandler : MonoBehaviour {
-
-        public NavMeshAgent agent;
+        
         public CameraController cameraController;
 
         void OnMouseUp() {
