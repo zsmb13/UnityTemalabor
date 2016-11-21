@@ -5,8 +5,7 @@ namespace Assets.Scripts.Model {
 
     public class TurnManager : MonoBehaviour {
 
-        public Player player1;
-        public Player player2;
+        public PlayerManager playerManager;
         public ClickManager clickmanager;
 
         private int current;
@@ -18,7 +17,7 @@ namespace Assets.Scripts.Model {
 
         void Start() {
             CurrentTeam = 1;
-            player1.OnTurnStart();
+            playerManager.GetPlayerByTeamID(CurrentTeam).OnTurnStart();
         }
 
         public void EndTurn(int teamID) {
@@ -29,16 +28,13 @@ namespace Assets.Scripts.Model {
 
             clickmanager.RemoveSelected();
 
-            if (CurrentTeam == 1) {
-                player1.OnTurnEnd();
-                CurrentTeam = 2;
-                player2.OnTurnStart();
-            }
-            else {
-                player2.OnTurnEnd();
-                CurrentTeam = 1;
-                player1.OnTurnStart();
-            }
+            playerManager.GetPlayerByTeamID(CurrentTeam).OnTurnEnd();
+            ChangeCurrentTeam();
+            playerManager.GetPlayerByTeamID(CurrentTeam).OnTurnStart();
+        }
+
+        private void ChangeCurrentTeam() {
+            CurrentTeam = (CurrentTeam == 1) ? 2 : 1;
         }
 
     }

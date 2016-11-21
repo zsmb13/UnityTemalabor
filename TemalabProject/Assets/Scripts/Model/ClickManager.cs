@@ -7,11 +7,13 @@ namespace Assets.Scripts.Model {
     public class ClickManager : MonoBehaviour {
 
         public TurnManager turnManager;
+        public PlayerManager playerManager;
 
         public Character SelectedCharacter {
             get { return selected; }
             private set { selected = value; }
         }
+
         private Character selected = null;
 
         public delegate void CharacterEvent(Character character);
@@ -22,43 +24,64 @@ namespace Assets.Scripts.Model {
 
         public void ClickedOn(object clickTarget) {
             if (clickTarget is Character) {
-                var targetChar = (Character) clickTarget;
-
-                if (selected == null) {
-                    if (targetChar.GameStats.Team != turnManager.CurrentTeam) {
-                        return;
-                    }
-
-                    SelectedCharacter = targetChar;
-                    targetChar.Select();
-                    //Selected event meghívása
-                    if (characterSelectedEvent != null) {
-                        characterSelectedEvent(selected);
-                    }
-                }
-                else {
-                    selected.GiveTarget(targetChar);
-                    if (characterSkillExecutedEvent != null) {
-                        characterSkillExecutedEvent(selected);
-                    }
-                }
+                ClickedOnCharacter((Character) clickTarget);
             }
             else {
-                if (selected != null) {
-                    selected.GiveTarget(clickTarget);
-                    if (characterSkillExecutedEvent != null) {
-                        characterSkillExecutedEvent(selected);
-                    }
+                ClickedOnTerrain(clickTarget);
+            }
+        }
+
+        private void ClickedOnTerrain(object clickTarget) {
+            if (selected != null) {
+                selected.GiveTarget(clickTarget);
+                if (characterSkillExecutedEvent != null) {
+                    characterSkillExecutedEvent(selected);
                 }
             }
         }
 
-        public void RemoveSelected() {
-            if (characterDeselectedEvent != null) {
+        private void ClickedOnCharacter(Character target) {
+            if (selected == null) {
+                if (target.GameStats.Cooldown > 0) {
+                    return;
+                }
+
+                int team = target.GameStats.Team;
+                if (team != turnManager.CurrentTeam) {
+                    return;
+                }
+                if (!target.GameStats.Deployed && !playerManager.GetPlayerByTeamID(team).CanDeploy()) {
+                    return;
+                }
+
+                SelectedCharacter = target;
+                target.Select();
+                //Selected event meghívása
+                if (characterSelectedEvent != null) {
+                    characterSelectedEvent(selected);
+                }
+            }
+            else {
+                if (!target.GameStats.Deployed) {
+                    return;
+                }
+                selected.GiveTarget(target);
+                if (characterSkillExecutedEvent != null) {
+                    characterSkillExecutedEvent(selected);
+                }
+            }
+        }
+
+        public
+            void RemoveSelected() {
+            if (
+                characterDeselectedEvent != null) {
                 characterDeselectedEvent(selected);
             }
-            if (SelectedCharacter != null) {
-                SelectedCharacter.Deselect();
+            if (
+                SelectedCharacter != null) {
+                SelectedCharacter.Deselect
+                    ();
             }
             SelectedCharacter = null;
         }

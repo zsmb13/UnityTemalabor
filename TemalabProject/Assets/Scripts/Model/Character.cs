@@ -74,12 +74,7 @@ namespace Assets.Scripts.Model {
         }
 
         public void NotifyClicked() {
-            if (GameStats.Cooldown == 0) {
-                clickManager.ClickedOn(this);
-            }
-            else {
-                Debug.Log("on cooldown");
-            }
+            clickManager.ClickedOn(this);
         }
 
         public void OnAttack(Character target) {

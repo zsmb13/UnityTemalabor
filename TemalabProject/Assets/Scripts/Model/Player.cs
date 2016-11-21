@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 
 
@@ -6,14 +7,22 @@ namespace Assets.Scripts.Model {
 
     public class Player : MonoBehaviour {
 
+        private static readonly int maxDeployed = 6;
+
         public TurnManager turnManager;
         public int teamID;
         public List<Character> characters;
+
+        private int deployedCount = 0;
 
         void Start() {
             foreach (var c in characters) {
                 c.GameStats.Team = teamID;
             }
+        }
+
+        public bool CanDeploy() {
+            return deployedCount < maxDeployed;
         }
 
         public void OnTurnEndButtonClicked() {
@@ -22,7 +31,7 @@ namespace Assets.Scripts.Model {
         }
 
         public void OnTurnStart() {
-            characters.RemoveAll(c => !c.gameObject.activeSelf);
+            //characters.RemoveAll(c => !c.gameObject.activeSelf);
 
             foreach (var c in characters) {
                 c.OnTurnStart();
@@ -30,8 +39,13 @@ namespace Assets.Scripts.Model {
         }
 
         public void OnTurnEnd() {
+            deployedCount = 0;
             foreach (var c in characters) {
                 c.OnTurnEnd();
+
+                if (c.GameStats.Deployed) {
+                    deployedCount++;
+                }
             }
         }
 
