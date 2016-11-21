@@ -12,7 +12,7 @@ namespace Assets.Scripts.Model.Characters {
             // TODO use actual stats
             constStats.Name = "Clementine";
             constStats.CharacterType = "Assassin";
-            constStats.DodgeChance = 30;
+            constStats.DodgeChance = 100;
             constStats.MagicResist = 15;
             constStats.PhysicalResist = 10;
             constStats.TotalHealth = 200;
@@ -31,7 +31,7 @@ namespace Assets.Scripts.Model.Characters {
         }
 
         protected override float GetDodgeDelay() {
-            return 0.98f;
+            return 0.0f;
         }
 
         protected override float GetDamagedDelay() {
