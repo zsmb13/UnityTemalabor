@@ -21,6 +21,7 @@ namespace Assets.Scripts.Model.Characters {
             var skills = new List<Skill>();
             skills.Add(new Walk());
             skills.Add(new BasicAttack_Pyromancer());
+            skills.Add(new Walk());
 
             Init(constStats, skills);
         }

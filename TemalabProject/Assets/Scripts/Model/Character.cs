@@ -146,15 +146,27 @@ namespace Assets.Scripts.Model {
             animator.SetTrigger("Damaged");
         }
 
+        private IEnumerator WaitForAnimation(Animation animation) {
+            do yield return null; while (animation.isPlaying);
+        }
+
         protected abstract float GetDeathDelay();
 
         private IEnumerator AnimateDeath(float animationDelay) {
             float attackDelay = animationDelay;
             float deathDelay = GetDeathDelay();
 
-            yield return new WaitForSecondsRealtime(attackDelay - deathDelay);
+            float startDelay = attackDelay - deathDelay;
+
+            yield return new WaitForSecondsRealtime(startDelay);
 
             animator.SetTrigger("Death");
+
+            float disappearDelay = startDelay + 2.3f;
+
+            yield return new WaitForSecondsRealtime(disappearDelay);
+
+            gameObject.SetActive(false);
         }
 
         public void OnTurnStart() {

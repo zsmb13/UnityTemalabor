@@ -14,6 +14,7 @@ namespace Assets.Scripts.Model {
 
         private void Start() {
             label = gameObject.GetComponentInChildren<Text>();
+            Disable();
             //clickManager.characterSelectedEvent += OnCharacterSelection;
             //clickManager.characterDeselectedEvent += OnCharacterDeselection;
         }

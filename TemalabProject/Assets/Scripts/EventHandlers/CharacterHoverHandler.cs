@@ -18,10 +18,12 @@ namespace Assets.Scripts.UI {
                 movementRangeCircle = transform.Find("Movement Range Circle");
             }
 
-            // TODO túl kicsi range (1> ?) esetén ne mutassa
+            float remainingMovement = character.TurnStats.RemainingMovement;
+            if (remainingMovement < 0.5) {
+                return;
+            }
 
             movementRangeCircle.gameObject.SetActive(true);
-            float remainingMovement = character.TurnStats.RemainingMovement;
             movementRangeCircle.localScale = new Vector3(remainingMovement*2, remainingMovement*2, 1);
 
         }

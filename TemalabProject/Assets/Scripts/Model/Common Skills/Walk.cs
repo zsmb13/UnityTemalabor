@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 
 namespace Assets.Scripts.Model.Skills {
+
     public class Walk : MiscSkill {
 
         private static readonly int cooldown = 0;
         private static readonly string name = "Walk";
         private static readonly string description = "Moves the character on the battlefield.";
 
-        public Walk() : base(name, description, cooldown) {
-        }
+        public Walk() : base(name, description, cooldown) {}
 
         protected override void OnExecute(Character source, object target) {
             GameTerrain terrain = target as GameTerrain;
@@ -26,7 +26,6 @@ namespace Assets.Scripts.Model.Skills {
             NavMeshAgent agent = source.GetComponent<NavMeshAgent>();
             agent.SetDestination(terrain.LastClickPosition);
             source.TurnStats.RemainingMovement -= distance;
-
         }
 
         public override double GetRange(Character source) {
@@ -34,11 +33,13 @@ namespace Assets.Scripts.Model.Skills {
         }
 
         public override bool IsAvailable(TurnStats stats) {
-            return stats.RemainingMovement>0.1;
+            return stats.RemainingMovement > 0.5;
         }
 
         protected override bool IsValidTarget(Character source, object target) {
             return target is GameTerrain;
         }
+
     }
+
 }

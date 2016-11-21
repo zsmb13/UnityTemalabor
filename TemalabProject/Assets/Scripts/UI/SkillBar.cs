@@ -7,7 +7,7 @@ public class SkillBar : MonoBehaviour {
     public ClickManager clickManager;
     private SkillButton[] buttons;
 
-    void Start() {
+    void Awake() {
         buttons = gameObject.transform.GetComponentsInChildren<SkillButton>();
         Debug.Log("Found " + buttons.Length + " children");
 

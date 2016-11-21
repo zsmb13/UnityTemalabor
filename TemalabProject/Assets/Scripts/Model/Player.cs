@@ -22,6 +22,8 @@ namespace Assets.Scripts.Model {
         }
 
         public void OnTurnStart() {
+            characters.RemoveAll(c => !c.gameObject.activeSelf);
+
             foreach (var c in characters) {
                 c.OnTurnStart();
             }
