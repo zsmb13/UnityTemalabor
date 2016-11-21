@@ -1,184 +1,166 @@
 fileFormatVersion: 2
-guid: 585b7240f562d134eaf685491260d1a6
-timeCreated: 1478969105
+guid: ebb1c47cfb167ee48ae64f2c3247eaa6
+timeCreated: 1479726557
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: arissa:Body_Geo
-    100004: arissa:Cloak_Geo
-    100006: arissa:Head
-    100008: arissa:HeadTop_End
-    100010: arissa:Hips
-    100012: arissa:LeftArm
-    100014: arissa:LeftFoot
-    100016: arissa:LeftFootToeBase_End
-    100018: arissa:LeftForeArm
-    100020: arissa:LeftHand
-    100022: arissa:LeftHandIndex1
-    100024: arissa:LeftHandIndex2
-    100026: arissa:LeftHandIndex3
-    100028: arissa:LeftHandIndex4
-    100030: arissa:LeftHandIndex5
-    100032: arissa:LeftHandMiddle1
-    100034: arissa:LeftHandMiddle2
-    100036: arissa:LeftHandMiddle3
-    100038: arissa:LeftHandMiddle4
-    100040: arissa:LeftHandMiddle5
-    100042: arissa:LeftHandPinky1
-    100044: arissa:LeftHandPinky2
-    100046: arissa:LeftHandPinky3
-    100048: arissa:LeftHandPinky4
-    100050: arissa:LeftHandPinky5
-    100052: arissa:LeftHandRing1
-    100054: arissa:LeftHandRing2
-    100056: arissa:LeftHandRing3
-    100058: arissa:LeftHandRing4
-    100060: arissa:LeftHandRing5
-    100062: arissa:LeftHandThumb1
-    100064: arissa:LeftHandThumb2
-    100066: arissa:LeftHandThumb3
-    100068: arissa:LeftHandThumb4
-    100070: arissa:LeftHandThumb5
-    100072: arissa:LeftLeg
-    100074: arissa:LeftShoulder
-    100076: arissa:LeftToeBase
-    100078: arissa:LeftUpLeg
-    100080: arissa:Meshes
-    100082: arissa:Neck
-    100084: arissa:Neck1
-    100086: arissa:RightArm
-    100088: arissa:RightFoot
-    100090: arissa:RightFootToeBase_End
-    100092: arissa:RightForeArm
-    100094: arissa:RightHand
-    100096: arissa:RightHandIndex1
-    100098: arissa:RightHandIndex2
-    100100: arissa:RightHandIndex3
-    100102: arissa:RightHandIndex4
-    100104: arissa:RightHandIndex5
-    100106: arissa:RightHandMiddle1
-    100108: arissa:RightHandMiddle2
-    100110: arissa:RightHandMiddle3
-    100112: arissa:RightHandMiddle4
-    100114: arissa:RightHandMiddle5
-    100116: arissa:RightHandPinky1
-    100118: arissa:RightHandPinky2
-    100120: arissa:RightHandPinky3
-    100122: arissa:RightHandPinky4
-    100124: arissa:RightHandPinky5
-    100126: arissa:RightHandRing1
-    100128: arissa:RightHandRing2
-    100130: arissa:RightHandRing3
-    100132: arissa:RightHandRing4
-    100134: arissa:RightHandRing5
-    100136: arissa:RightHandThumb1
-    100138: arissa:RightHandThumb2
-    100140: arissa:RightHandThumb3
-    100142: arissa:RightHandThumb4
-    100144: arissa:RightHandThumb5
-    100146: arissa:RightLeg
-    100148: arissa:RightShoulder
-    100150: arissa:RightToeBase
-    100152: arissa:RightUpLeg
-    100154: arissa:Skirt_Geo
-    100156: arissa:Spine
-    100158: arissa:Spine1
-    100160: arissa:Spine2
-    100162: arissa:Weapons_Geo
-    400000: //RootNode
-    400002: arissa:Body_Geo
-    400004: arissa:Cloak_Geo
-    400006: arissa:Head
-    400008: arissa:HeadTop_End
-    400010: arissa:Hips
-    400012: arissa:LeftArm
-    400014: arissa:LeftFoot
-    400016: arissa:LeftFootToeBase_End
-    400018: arissa:LeftForeArm
-    400020: arissa:LeftHand
-    400022: arissa:LeftHandIndex1
-    400024: arissa:LeftHandIndex2
-    400026: arissa:LeftHandIndex3
-    400028: arissa:LeftHandIndex4
-    400030: arissa:LeftHandIndex5
-    400032: arissa:LeftHandMiddle1
-    400034: arissa:LeftHandMiddle2
-    400036: arissa:LeftHandMiddle3
-    400038: arissa:LeftHandMiddle4
-    400040: arissa:LeftHandMiddle5
-    400042: arissa:LeftHandPinky1
-    400044: arissa:LeftHandPinky2
-    400046: arissa:LeftHandPinky3
-    400048: arissa:LeftHandPinky4
-    400050: arissa:LeftHandPinky5
-    400052: arissa:LeftHandRing1
-    400054: arissa:LeftHandRing2
-    400056: arissa:LeftHandRing3
-    400058: arissa:LeftHandRing4
-    400060: arissa:LeftHandRing5
-    400062: arissa:LeftHandThumb1
-    400064: arissa:LeftHandThumb2
-    400066: arissa:LeftHandThumb3
-    400068: arissa:LeftHandThumb4
-    400070: arissa:LeftHandThumb5
-    400072: arissa:LeftLeg
-    400074: arissa:LeftShoulder
-    400076: arissa:LeftToeBase
-    400078: arissa:LeftUpLeg
-    400080: arissa:Meshes
-    400082: arissa:Neck
-    400084: arissa:Neck1
-    400086: arissa:RightArm
-    400088: arissa:RightFoot
-    400090: arissa:RightFootToeBase_End
-    400092: arissa:RightForeArm
-    400094: arissa:RightHand
-    400096: arissa:RightHandIndex1
-    400098: arissa:RightHandIndex2
-    400100: arissa:RightHandIndex3
-    400102: arissa:RightHandIndex4
-    400104: arissa:RightHandIndex5
-    400106: arissa:RightHandMiddle1
-    400108: arissa:RightHandMiddle2
-    400110: arissa:RightHandMiddle3
-    400112: arissa:RightHandMiddle4
-    400114: arissa:RightHandMiddle5
-    400116: arissa:RightHandPinky1
-    400118: arissa:RightHandPinky2
-    400120: arissa:RightHandPinky3
-    400122: arissa:RightHandPinky4
-    400124: arissa:RightHandPinky5
-    400126: arissa:RightHandRing1
-    400128: arissa:RightHandRing2
-    400130: arissa:RightHandRing3
-    400132: arissa:RightHandRing4
-    400134: arissa:RightHandRing5
-    400136: arissa:RightHandThumb1
-    400138: arissa:RightHandThumb2
-    400140: arissa:RightHandThumb3
-    400142: arissa:RightHandThumb4
-    400144: arissa:RightHandThumb5
-    400146: arissa:RightLeg
-    400148: arissa:RightShoulder
-    400150: arissa:RightToeBase
-    400152: arissa:RightUpLeg
-    400154: arissa:Skirt_Geo
-    400156: arissa:Spine
-    400158: arissa:Spine1
-    400160: arissa:Spine2
-    400162: arissa:Weapons_Geo
-    4300000: arissa:Body_Geo
-    4300002: arissa:Cloak_Geo
-    4300004: arissa:Weapons_Geo
-    4300006: arissa:Skirt_Geo
+    100000: arissa:Head
+    100002: arissa:HeadTop_End
+    100004: arissa:Hips
+    100006: arissa:LeftArm
+    100008: arissa:LeftFoot
+    100010: arissa:LeftFootToeBase_End
+    100012: arissa:LeftForeArm
+    100014: arissa:LeftHand
+    100016: arissa:LeftHandIndex1
+    100018: arissa:LeftHandIndex2
+    100020: arissa:LeftHandIndex3
+    100022: arissa:LeftHandIndex4
+    100024: arissa:LeftHandIndex5
+    100026: arissa:LeftHandMiddle1
+    100028: arissa:LeftHandMiddle2
+    100030: arissa:LeftHandMiddle3
+    100032: arissa:LeftHandMiddle4
+    100034: arissa:LeftHandMiddle5
+    100036: arissa:LeftHandPinky1
+    100038: arissa:LeftHandPinky2
+    100040: arissa:LeftHandPinky3
+    100042: arissa:LeftHandPinky4
+    100044: arissa:LeftHandPinky5
+    100046: arissa:LeftHandRing1
+    100048: arissa:LeftHandRing2
+    100050: arissa:LeftHandRing3
+    100052: arissa:LeftHandRing4
+    100054: arissa:LeftHandRing5
+    100056: arissa:LeftHandThumb1
+    100058: arissa:LeftHandThumb2
+    100060: arissa:LeftHandThumb3
+    100062: arissa:LeftHandThumb4
+    100064: arissa:LeftHandThumb5
+    100066: arissa:LeftLeg
+    100068: arissa:LeftShoulder
+    100070: arissa:LeftToeBase
+    100072: arissa:LeftUpLeg
+    100074: arissa:Neck
+    100076: arissa:Neck1
+    100078: arissa:RightArm
+    100080: arissa:RightFoot
+    100082: arissa:RightFootToeBase_End
+    100084: arissa:RightForeArm
+    100086: arissa:RightHand
+    100088: arissa:RightHandIndex1
+    100090: arissa:RightHandIndex2
+    100092: arissa:RightHandIndex3
+    100094: arissa:RightHandIndex4
+    100096: arissa:RightHandIndex5
+    100098: arissa:RightHandMiddle1
+    100100: arissa:RightHandMiddle2
+    100102: arissa:RightHandMiddle3
+    100104: arissa:RightHandMiddle4
+    100106: arissa:RightHandMiddle5
+    100108: arissa:RightHandPinky1
+    100110: arissa:RightHandPinky2
+    100112: arissa:RightHandPinky3
+    100114: arissa:RightHandPinky4
+    100116: arissa:RightHandPinky5
+    100118: arissa:RightHandRing1
+    100120: arissa:RightHandRing2
+    100122: arissa:RightHandRing3
+    100124: arissa:RightHandRing4
+    100126: arissa:RightHandRing5
+    100128: arissa:RightHandThumb1
+    100130: arissa:RightHandThumb2
+    100132: arissa:RightHandThumb3
+    100134: arissa:RightHandThumb4
+    100136: arissa:RightHandThumb5
+    100138: arissa:RightLeg
+    100140: arissa:RightShoulder
+    100142: arissa:RightToeBase
+    100144: arissa:RightUpLeg
+    100146: arissa:Spine
+    100148: arissa:Spine1
+    100150: arissa:Spine2
+    100152: //RootNode
+    400000: arissa:Head
+    400002: arissa:HeadTop_End
+    400004: arissa:Hips
+    400006: arissa:LeftArm
+    400008: arissa:LeftFoot
+    400010: arissa:LeftFootToeBase_End
+    400012: arissa:LeftForeArm
+    400014: arissa:LeftHand
+    400016: arissa:LeftHandIndex1
+    400018: arissa:LeftHandIndex2
+    400020: arissa:LeftHandIndex3
+    400022: arissa:LeftHandIndex4
+    400024: arissa:LeftHandIndex5
+    400026: arissa:LeftHandMiddle1
+    400028: arissa:LeftHandMiddle2
+    400030: arissa:LeftHandMiddle3
+    400032: arissa:LeftHandMiddle4
+    400034: arissa:LeftHandMiddle5
+    400036: arissa:LeftHandPinky1
+    400038: arissa:LeftHandPinky2
+    400040: arissa:LeftHandPinky3
+    400042: arissa:LeftHandPinky4
+    400044: arissa:LeftHandPinky5
+    400046: arissa:LeftHandRing1
+    400048: arissa:LeftHandRing2
+    400050: arissa:LeftHandRing3
+    400052: arissa:LeftHandRing4
+    400054: arissa:LeftHandRing5
+    400056: arissa:LeftHandThumb1
+    400058: arissa:LeftHandThumb2
+    400060: arissa:LeftHandThumb3
+    400062: arissa:LeftHandThumb4
+    400064: arissa:LeftHandThumb5
+    400066: arissa:LeftLeg
+    400068: arissa:LeftShoulder
+    400070: arissa:LeftToeBase
+    400072: arissa:LeftUpLeg
+    400074: arissa:Neck
+    400076: arissa:Neck1
+    400078: arissa:RightArm
+    400080: arissa:RightFoot
+    400082: arissa:RightFootToeBase_End
+    400084: arissa:RightForeArm
+    400086: arissa:RightHand
+    400088: arissa:RightHandIndex1
+    400090: arissa:RightHandIndex2
+    400092: arissa:RightHandIndex3
+    400094: arissa:RightHandIndex4
+    400096: arissa:RightHandIndex5
+    400098: arissa:RightHandMiddle1
+    400100: arissa:RightHandMiddle2
+    400102: arissa:RightHandMiddle3
+    400104: arissa:RightHandMiddle4
+    400106: arissa:RightHandMiddle5
+    400108: arissa:RightHandPinky1
+    400110: arissa:RightHandPinky2
+    400112: arissa:RightHandPinky3
+    400114: arissa:RightHandPinky4
+    400116: arissa:RightHandPinky5
+    400118: arissa:RightHandRing1
+    400120: arissa:RightHandRing2
+    400122: arissa:RightHandRing3
+    400124: arissa:RightHandRing4
+    400126: arissa:RightHandRing5
+    400128: arissa:RightHandThumb1
+    400130: arissa:RightHandThumb2
+    400132: arissa:RightHandThumb3
+    400134: arissa:RightHandThumb4
+    400136: arissa:RightHandThumb5
+    400138: arissa:RightLeg
+    400140: arissa:RightShoulder
+    400142: arissa:RightToeBase
+    400144: arissa:RightUpLeg
+    400146: arissa:Spine
+    400148: arissa:Spine1
+    400150: arissa:Spine2
+    400152: //RootNode
     7400000: mixamo.com
     9500000: //RootNode
-    13700000: arissa:Body_Geo
-    13700002: arissa:Cloak_Geo
-    13700004: arissa:Skirt_Geo
-    13700006: arissa:Weapons_Geo
   materials:
     importMaterials: 1
     materialName: 0
@@ -189,7 +171,12 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
-    animationImportErrors: 
+    animationImportErrors: '
+
+      Imported file ''jump'' conversion failed: Required human bone ''Hips'' not found
+
+
+'
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
@@ -223,7 +210,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
   importAnimation: 1
-  copyAvatar: 0
+  copyAvatar: 1
   humanDescription:
     human:
     - boneName: arissa:Hips
@@ -1064,7 +1051,8 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
     hasTranslationDoF: 0
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 585b7240f562d134eaf685491260d1a6,
+    type: 3}
   animationType: 3
   humanoidOversampling: 1
   additionalBone: 0

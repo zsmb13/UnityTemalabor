@@ -5,22 +5,23 @@ using UnityEditor;
 
 namespace Assets.Scripts.Model.Characters {
 
-    public class Pyromancer : Character {
+    public class Assassin : Character {
 
         public void Awake() {
             var constStats = new ConstStats();
             // TODO use actual stats
-            constStats.Name = "Kyra";
-            constStats.CharacterType = "Pyromancer";
-            constStats.DodgeChance = 50; // TODO use real value, 50 is for testing
+            constStats.Name = "Clementine";
+            constStats.CharacterType = "Assassin";
+            constStats.DodgeChance = 30;
             constStats.MagicResist = 15;
-            constStats.PhysicalResist = 15;
+            constStats.PhysicalResist = 10;
             constStats.TotalHealth = 200;
-            constStats.TotalMovement = 5;
+            constStats.TotalMovement = 7;
 
             var skills = new List<Skill>();
             skills.Add(new Walk());
-            skills.Add(new BasicAttack_Pyromancer());
+            skills.Add(new BasicAttack_Assassin());
+            skills.Add(new BlinkTest()); // TODO remove
 
             Init(constStats, skills);
         }

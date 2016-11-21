@@ -39,8 +39,7 @@ namespace Assets.Scripts.Model.Skills {
             //Lecseréli a shadert "árnyék" jellegűre
             //source.transform.Find("Kachujin_G_Rosales/Kachujin").GetComponent<SkinnedMeshRenderer>().material.shader = Shader.Find("FX/Flare");
             //source.transform.Find("Kachujin_G_Rosales/Kachujin").GetComponent<SkinnedMeshRenderer>().material.shader = Shader.Find("Unlit/Color");
-            source.transform.Find("Kachujin_G_Rosales/Kachujin").GetComponent<SkinnedMeshRenderer>().material.shader =
-                Shader.Find("Particles/Multiply");
+            //source.transform.Find("Kachujin_G_Rosales/Kachujin").GetComponent<SkinnedMeshRenderer>().material.shader = Shader.Find("Particles/Multiply");
 
 
             Result result = new Result(0, false);
