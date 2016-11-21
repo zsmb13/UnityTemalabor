@@ -12,7 +12,7 @@ namespace Assets.Scripts.Model.Characters {
             // TODO use actual stats
             constStats.Name = "Clementine";
             constStats.CharacterType = "Assassin";
-            constStats.DodgeChance = 100;
+            constStats.DodgeChance = 0;
             constStats.MagicResist = 15;
             constStats.PhysicalResist = 10;
             constStats.TotalHealth = 200;
