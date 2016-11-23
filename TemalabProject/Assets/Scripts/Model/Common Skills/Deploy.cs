@@ -38,7 +38,25 @@ namespace Assets.Scripts.Model.Skills {
         }
 
         protected override bool IsValidTarget(Character source, object target) {
-            return source.GameStats.Deployed == false && target is GameTerrain;
+            if (source.GameStats.Deployed || !(target is GameTerrain)) {
+                return false;
+            }
+
+            int team = source.GameStats.Team;
+
+            var pos = ((GameTerrain) target).LastClickPosition;
+
+            if (team == 1) {
+                return IsInRect(0, 0, 7.5f, 15f, pos.x, pos.y);
+            }
+            else {
+                return IsInRect(17.5f, 0, 25f, 15f, pos.x, pos.y);
+            }
         }
+
+        private bool IsInRect(float x1, float y1, float x2, float y2, float x, float y) {
+            return x1 <= x && x <= x2 && y1 <= y && y <= y2;
+        }
+
     }
 }
