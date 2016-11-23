@@ -36,7 +36,7 @@ namespace Assets.Scripts.Model.Skills {
             source.TurnStats.ActionPoints--;
         }
 
-        public override double GetRange(Character source) {
+        public override float GetRange(Character source) {
             return 10;
         }
 
@@ -45,7 +45,6 @@ namespace Assets.Scripts.Model.Skills {
         }
 
         protected override bool IsValidTarget(Character source, object target) {
-            // TODO check range here
             return true;
         }
 

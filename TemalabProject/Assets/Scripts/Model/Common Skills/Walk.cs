@@ -28,7 +28,7 @@ namespace Assets.Scripts.Model.Skills {
             source.TurnStats.RemainingMovement -= distance;
         }
 
-        public override double GetRange(Character source) {
+        public override float GetRange(Character source) {
             return source.TurnStats.RemainingMovement;
         }
 

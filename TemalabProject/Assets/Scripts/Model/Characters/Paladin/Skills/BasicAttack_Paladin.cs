@@ -41,7 +41,7 @@ namespace Assets.Scripts.Model.Skills
         }
 
 
-        public override double GetRange(Character source)
+        public override float GetRange(Character source)
         {
             return 1;
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace Assets.Scripts.Model {
 
@@ -26,13 +27,42 @@ namespace Assets.Scripts.Model {
                 return;
             }
 
+            if (!IsInRange(source, target)) {
+                return;
+            }
+
             OnExecute(source, target);
 
             // at this point, the skill must have executed successfully
             source.GameStats.Cooldown += Cooldown;
         }
 
-        public abstract double GetRange(Character source);
+        private bool IsInRange(Character source, object target) {
+            float range = GetRange(source);
+            if (range < 0) {
+                return true;
+            }
+
+            Vector3 targetPos;
+            if (target is Character) {
+                targetPos = ((Character) target).gameObject.transform.position;
+            }
+            else {
+                targetPos = ((GameTerrain) target).LastClickPosition;
+            }
+
+            Vector3 sourcePos = source.gameObject.transform.position;
+
+            float diffX = targetPos.x - sourcePos.x;
+            float diffZ = targetPos.z - sourcePos.z;
+
+            //Debug.Log("Dist squared is " + (diffX*diffX+diffZ*diffZ));
+            //Debug.Log("Range squared is " + (range*range));
+
+            return diffX*diffX + diffZ*diffZ <= range*range;
+        }
+
+        public abstract float GetRange(Character source);
 
         protected abstract bool HasRequiredTeam(Character source, object target);
 

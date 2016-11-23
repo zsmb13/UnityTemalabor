@@ -29,7 +29,7 @@ namespace Assets.Scripts.Model.Skills {
             source.GameStats.Deployed = true;
         }
 
-        public override double GetRange(Character source) {
+        public override float GetRange(Character source) {
             return 10;
         }
 

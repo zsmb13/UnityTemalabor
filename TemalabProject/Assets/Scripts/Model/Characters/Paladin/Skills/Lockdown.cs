@@ -26,7 +26,7 @@ namespace Assets.Scripts.Model.Skills
             enemy.GameStats.Cooldown += enemycooldown;
         }
 
-        public override double GetRange(Character source)
+        public override float GetRange(Character source)
         {
             return -1;
         }

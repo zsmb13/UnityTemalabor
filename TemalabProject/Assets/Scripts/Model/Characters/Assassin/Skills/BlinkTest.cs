@@ -63,7 +63,7 @@ namespace Assets.Scripts.Model.Skills {
             source.TurnStats.ActionPoints--;
         }
 
-        public override double GetRange(Character source) {
+        public override float GetRange(Character source) {
             return range;
         }
 
