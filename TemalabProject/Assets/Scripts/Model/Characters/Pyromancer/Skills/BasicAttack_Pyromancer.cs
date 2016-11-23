@@ -28,7 +28,7 @@ namespace Assets.Scripts.Model.Skills {
                 result = enemy.OnMagicDamage(damage, animationDelay);
             }
 
-            source.OnAttack(enemy);
+            source.OnAttack(enemy,"Attack");
 
             source.AfterAttack(enemy, result);
             enemy.AfterDefense(source, result);

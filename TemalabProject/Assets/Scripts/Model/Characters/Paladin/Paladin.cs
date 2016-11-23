@@ -24,6 +24,7 @@ namespace Assets.Scripts.Model.Characters
             List<Skill> skills = new List<Skill>();
             skills.Add(new Walk());
             skills.Add(new BasicAttack_Paladin());
+            skills.Add(new Lockdown());
 
             Init(constStats, skills);
         }

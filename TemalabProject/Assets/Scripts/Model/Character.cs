@@ -77,12 +77,12 @@ namespace Assets.Scripts.Model {
             clickManager.ClickedOn(this);
         }
 
-        public void OnAttack(Character target) {
+        public void OnAttack(Character target, String trigger) {
             Vector3 dir = target.transform.position - this.transform.position;
             float step = 100000; //inf
             Vector3 newDir = Vector3.RotateTowards(transform.forward, dir, step, 0.0F);
             transform.rotation = Quaternion.LookRotation(newDir);
-            animator.SetTrigger("Attack");
+            animator.SetTrigger(trigger);
         }
 
         public void OnDodge(float animationDelay) {

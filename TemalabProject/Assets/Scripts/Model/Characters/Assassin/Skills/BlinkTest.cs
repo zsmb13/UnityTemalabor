@@ -47,7 +47,7 @@ namespace Assets.Scripts.Model.Skills {
             result = enemy.OnPiercingDamage(damage, 0);
 
 
-            source.OnAttack(enemy);
+            source.OnAttack(enemy,"Attack");
 
             //TODO visszaállítani amikor megérkezett a célponthoz
             //agent.speed = tmpSpeed;

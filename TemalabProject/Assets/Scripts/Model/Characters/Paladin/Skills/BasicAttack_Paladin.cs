@@ -32,7 +32,7 @@ namespace Assets.Scripts.Model.Skills
             {
                 result = enemy.OnPhysicalDamage(damage, animationDelay);
             }
-            source.OnAttack(enemy);
+            source.OnAttack(enemy,"Attack");
 
             source.AfterAttack(enemy, result);
             enemy.AfterDefense(source, result);
@@ -43,7 +43,7 @@ namespace Assets.Scripts.Model.Skills
 
         public override float GetRange(Character source)
         {
-            return 1;
+            return 2.5f;
         }
 
         public override bool IsAvailable(TurnStats turnStats)
