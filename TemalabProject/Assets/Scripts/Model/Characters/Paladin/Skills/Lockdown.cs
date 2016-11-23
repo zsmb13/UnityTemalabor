@@ -24,11 +24,12 @@ namespace Assets.Scripts.Model.Skills
 
             source.TurnStats.ActionPoints--;
             enemy.GameStats.Cooldown += enemycooldown;
+            source.OnAttack(enemy, "Active");
         }
 
         public override float GetRange(Character source)
         {
-            return -1;
+            return 100;
         }
 
         public override bool IsAvailable(TurnStats stats)
