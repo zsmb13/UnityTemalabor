@@ -18,34 +18,29 @@ namespace Assets.Scripts.Model.Skills {
             b.onClick.Invoke();
         }
 
-        void OnGUI() {
-            Event e = Event.current;
-            if(e.isKey) {
-                
-                if(Input.GetKeyDown(KeyCode.C)) {
-                    cameraController.switchToNextCamera();
-                }
+        void Update() {
+            if(Input.GetKeyDown(KeyCode.C)) {
+                cameraController.switchToNextCamera();
+            }
 
-                if(Input.GetKeyDown(KeyCode.D)) {
-                    PressButton(endTurnButton1);
-                }
+            if(Input.GetKeyDown(KeyCode.D)) {
+                PressButton(endTurnButton1);
+            }
 
-                if(Input.GetKeyDown(KeyCode.F)) {
-                    PressButton(endTurnButton2);
-                }
+            if(Input.GetKeyDown(KeyCode.F)) {
+                PressButton(endTurnButton2);
+            }
 
-                if(Input.GetKeyDown(KeyCode.Q)) {
-                    PressButton(skillButton0);
-                }
+            if(Input.GetKeyDown(KeyCode.Q)) {
+                PressButton(skillButton0);
+            }
 
-                if(Input.GetKeyDown(KeyCode.W)) {
-                    PressButton(skillButton1);
-                }
+            if(Input.GetKeyDown(KeyCode.W)) {
+                PressButton(skillButton1);
+            }
 
-                if(Input.GetKeyDown(KeyCode.E)) {
-                    PressButton(skillButton2);
-                }
-
+            if(Input.GetKeyDown(KeyCode.E)) {
+                PressButton(skillButton2);
             }
 
         }

@@ -21,19 +21,9 @@ public class CameraController : MonoBehaviour {
         }
     }
 
-    /*
-    // Update is called once per frame
-    void Update() {
-        //If the c button is pressed, switch to the next camera
-        //Set the camera at the current index to inactive, and set the next one in the array to active
-        //When we reach the end of the camera array, move back to the beginning or the array.
-        if(Input.GetKeyDown(KeyCode.C)) {
-            switchToNextCamera();
-        }
-    }*/
-
     public void switchToNextCamera() {
         currentCameraIndex++;
+        Debug.Log("Switching to the next camera " + currentCameraIndex);
         if(currentCameraIndex < cameras.Length) {
             cameras[currentCameraIndex - 1].gameObject.SetActive(false);
             cameras[currentCameraIndex].gameObject.SetActive(true);

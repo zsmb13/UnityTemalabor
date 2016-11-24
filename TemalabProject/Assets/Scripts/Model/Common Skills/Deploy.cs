@@ -30,7 +30,7 @@ namespace Assets.Scripts.Model.Skills {
         }
 
         public override float GetRange(Character source) {
-            return 10;
+            return 10000;
         }
 
         public override bool IsAvailable(TurnStats turnStats) {
