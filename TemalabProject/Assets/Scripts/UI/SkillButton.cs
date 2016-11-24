@@ -20,6 +20,7 @@ namespace Assets.Scripts.Model {
         }
 
         public void OnSkillButtonPressed() {
+            if(!isActiveAndEnabled) return;
             var c = clickManager.SelectedCharacter;
             c.TurnStats.SelectedSkill = skill;
             Debug.Log("Új kijelölt skill: " + c.TurnStats.SelectedSkill);

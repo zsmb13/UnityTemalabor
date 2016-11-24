@@ -4,11 +4,12 @@ using Assets.Scripts.Model;
 
 public class CharacterEventHandler : MonoBehaviour {
 
-    public Animator animator;
+    private Animator animator;
     private NavMeshAgent agent;
 
     // Use this for initialization
     void Start() {
+        animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
     }
 
