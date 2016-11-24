@@ -15,7 +15,12 @@ namespace Assets.Scripts.Model.Skills {
                 range, damage);
 
         private static readonly int damage = 30;
-        private static readonly float range = 5;
+        private static readonly float range = 8;
+
+        //TMP teszt
+        float tmpSpeed;
+        float tmpAcc;
+        float tmpStop;
 
         public BlinkTest() : base(name, description, cooldown) {}
 
@@ -26,34 +31,27 @@ namespace Assets.Scripts.Model.Skills {
 
 
             //Oda "teleportál"
-            var tmpSpeed = agent.speed;
-            var tmpAcc = agent.acceleration;
-            var tmpStop = agent.stoppingDistance;
+            tmpSpeed = agent.speed;
+            tmpAcc = agent.acceleration;
+            tmpStop = agent.stoppingDistance;
             agent.acceleration = 1000;
             agent.speed = 50;
-            agent.stoppingDistance = 3f;
+            agent.stoppingDistance = 1.5f;
 
 
             agent.SetDestination(enemy.transform.position);
+            source.OnWalk();
+            source.OnAttack(enemy, "Active");
+
+            source.CharacterArrivedEvent += ResetAfterPathCompletedCallback;
+
+
+            Result result = enemy.OnPiercingDamage(damage, 1.0f);
+
 
             //Lecseréli a shadert "árnyék" jellegűre
-            //source.transform.Find("Kachujin_G_Rosales/Kachujin").GetComponent<SkinnedMeshRenderer>().material.shader = Shader.Find("FX/Flare");
-            //source.transform.Find("Kachujin_G_Rosales/Kachujin").GetComponent<SkinnedMeshRenderer>().material.shader = Shader.Find("Unlit/Color");
             //source.transform.Find("Kachujin_G_Rosales/Kachujin").GetComponent<SkinnedMeshRenderer>().material.shader = Shader.Find("Particles/Multiply");
 
-
-            Result result = new Result(0, false);
-
-            result = enemy.OnPiercingDamage(damage, 0);
-
-
-            source.OnAttack(enemy,"Attack");
-
-            //TODO visszaállítani amikor megérkezett a célponthoz
-            //agent.speed = tmpSpeed;
-            //agent.acceleration = tmpAcc;
-            //agent.stoppingDistnce = tmpStop;
-            //agent.setDestination(null);
             //source.transform.Find("Kachujin_G_Rosales/Kachujin").GetComponent<SkinnedMeshRenderer>().material.shader = Shader.Find("Standard (Specular setup)");
 
 
@@ -72,8 +70,15 @@ namespace Assets.Scripts.Model.Skills {
         }
 
         protected override bool IsValidTarget(Character source, object target) {
-            // TODO check range here
-            return true;
+            return target is Character;
+        }
+
+        private void ResetAfterPathCompletedCallback(Character source) {
+            var agent = source.GetComponent<NavMeshAgent>();
+            agent.SetDestination(source.transform.position);
+            agent.speed = tmpSpeed;
+            agent.acceleration = tmpAcc;
+            agent.stoppingDistance = tmpStop;
         }
 
     }

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 namespace Assets.Scripts.Model {
 
+    public delegate void CharacterEvent(Character character);
+
     public class ClickManager : MonoBehaviour {
 
         public TurnManager turnManager;
@@ -16,7 +18,6 @@ namespace Assets.Scripts.Model {
 
         private Character selected = null;
 
-        public delegate void CharacterEvent(Character character);
 
         public event CharacterEvent characterSelectedEvent;
         public event CharacterEvent characterDeselectedEvent;

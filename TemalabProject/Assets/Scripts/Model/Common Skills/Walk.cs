@@ -22,10 +22,13 @@ namespace Assets.Scripts.Model.Skills {
             if (distance > source.TurnStats.RemainingMovement) {
                 return;
             }
-
+            
             NavMeshAgent agent = source.GetComponent<NavMeshAgent>();
             agent.SetDestination(terrain.LastClickPosition);
             source.TurnStats.RemainingMovement -= distance;
+
+            source.OnWalk();
+            
         }
 
         public override float GetRange(Character source) {

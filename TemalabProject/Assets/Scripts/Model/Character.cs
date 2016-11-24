@@ -8,6 +8,8 @@ namespace Assets.Scripts.Model {
 
     public abstract class Character : MonoBehaviour {
 
+        public event CharacterEvent CharacterArrivedEvent;
+
         public ClickManager clickManager;
 
         public ConstStats ConstStats { get; set; }
@@ -39,11 +41,10 @@ namespace Assets.Scripts.Model {
         public List<Skill> GetSkills() {
             List<Skill> skills = new List<Skill>();
 
-            if (GameStats.Deployed) {
+            if(GameStats.Deployed) {
                 // TODO make sure only the proper skills are active somewhere
                 skills.AddRange(Skills);
-            }
-            else {
+            } else {
                 skills.Add(DeploySkill);
             }
 
@@ -75,6 +76,35 @@ namespace Assets.Scripts.Model {
 
         public void NotifyClicked() {
             clickManager.ClickedOn(this);
+        }
+
+        public void OnWalk() {
+            StartCoroutine(AnimateWalk());
+        }
+
+        private IEnumerator AnimateWalk() {
+
+            animator.SetBool("Moving", true);
+
+            yield return new WaitUntil(PathCompleted);
+
+            animator.SetBool("Moving", false);
+            if(CharacterArrivedEvent != null) {
+                CharacterArrivedEvent(this);
+            }
+        }
+
+        private bool PathCompleted() {
+            NavMeshAgent agent = GetComponent<NavMeshAgent>();
+
+            if(!agent.pathPending) {
+                if(agent.remainingDistance <= agent.stoppingDistance) {
+                    if(!agent.hasPath || agent.velocity.sqrMagnitude == 0f) {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         public void OnAttack(Character target, String trigger) {
@@ -119,11 +149,10 @@ namespace Assets.Scripts.Model {
 
             GameStats.RemainingHealth -= reducedDamage;
 
-            if (GameStats.RemainingHealth <= 0) {
+            if(GameStats.RemainingHealth <= 0) {
                 StartCoroutine(AnimateDeath(animationDelay));
                 result.Killed = true;
-            }
-            else {
+            } else {
                 StartCoroutine(AnimateDamage(animationDelay));
             }
 
@@ -142,7 +171,7 @@ namespace Assets.Scripts.Model {
         }
 
         private IEnumerator WaitForAnimation(Animation animation) {
-            do yield return null; while (animation.isPlaying);
+            do yield return null; while(animation.isPlaying);
         }
 
         protected abstract float GetDeathDelay();
