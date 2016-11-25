@@ -75,10 +75,11 @@ namespace Assets.Scripts.Model.Skills {
 
         private void ResetAfterPathCompletedCallback(Character source) {
             var agent = source.GetComponent<NavMeshAgent>();
-            agent.SetDestination(source.transform.position);
+            agent.ResetPath();
             agent.speed = tmpSpeed;
             agent.acceleration = tmpAcc;
             agent.stoppingDistance = tmpStop;
+            source.CharacterArrivedEvent -= ResetAfterPathCompletedCallback;
         }
 
     }

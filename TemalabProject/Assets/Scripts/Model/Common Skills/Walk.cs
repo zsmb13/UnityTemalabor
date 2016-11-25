@@ -28,6 +28,7 @@ namespace Assets.Scripts.Model.Skills {
             source.TurnStats.RemainingMovement -= distance;
 
             source.OnWalk();
+            source.CharacterArrivedEvent += ResetAfterPathCompletedCallback;
             
         }
 
@@ -41,6 +42,12 @@ namespace Assets.Scripts.Model.Skills {
 
         protected override bool IsValidTarget(Character source, object target) {
             return target is GameTerrain;
+        }
+
+        private void ResetAfterPathCompletedCallback(Character source) {
+            var agent = source.GetComponent<NavMeshAgent>();
+            agent.ResetPath();
+            source.CharacterArrivedEvent -= ResetAfterPathCompletedCallback;
         }
 
     }
