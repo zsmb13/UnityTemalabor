@@ -51,7 +51,6 @@ namespace Assets.Scripts.Model.Skills {
         }
 
         protected override bool IsValidTarget(Character source, object target) {
-            // TODO check range here
             return true;
         }
 

@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 
 namespace Assets.Scripts.Model {
+
     public class GameStats {
+
         private int cooldown;
+
         public int Cooldown {
             get { return cooldown; }
             set {
@@ -16,7 +19,24 @@ namespace Assets.Scripts.Model {
         }
 
         public bool Deployed { get; set; }
-        public int RemainingHealth { get; set; }
+
+        private int remainingHealth;
+
+        public int RemainingHealth {
+            get {
+                return remainingHealth;
+                ;
+            }
+            set {
+                if (value < 0) {
+                    value = 0;
+                }
+                remainingHealth = value;
+            }
+        }
+
         public int Team { get; set; }
+
     }
+
 }

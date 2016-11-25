@@ -35,6 +35,10 @@ namespace Assets.Scripts.Model {
             // empty
         }
 
+        public void Animate(string triggerName) {
+            animator.SetTrigger(triggerName);
+        }
+
         public void Deselect() {
             selectionCircle.SetActive(false);
         }
