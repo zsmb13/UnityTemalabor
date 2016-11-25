@@ -16,17 +16,6 @@ namespace Assets.Scripts.Model.Skills {
 
         public BasicAttack_Priest() : base(name, description, cooldown) {}
 
-        public override float GetRange(Character source) {
-            return 15f;
-        }
-
-        public override bool IsAvailable(TurnStats turnStats) {
-            return turnStats.ActionPoints > 0;
-        }
-
-        protected override bool IsValidTarget(Character source, object target) {
-            return true;
-        }
 
         protected override void OnExecute(Character source, object target) {
             Character enemy = target as Character;
@@ -47,5 +36,12 @@ namespace Assets.Scripts.Model.Skills {
             source.TurnStats.ActionPoints--;
         }
 
+        public override float GetRange(Character source) {
+            return 15f;
+        }
+
+        public override bool IsAvailable(TurnStats turnStats) {
+            return turnStats.ActionPoints > 0;
+        }
     }
 }

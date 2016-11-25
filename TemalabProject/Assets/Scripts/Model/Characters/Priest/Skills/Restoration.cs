@@ -22,10 +22,6 @@ namespace Assets.Scripts.Model.Skills {
             return turnStats.ActionPoints > 0 && !turnStats.ActiveAbilityUsed;
         }
 
-        protected override bool IsValidTarget(Character source, object target) {
-            return true;
-        }
-
         protected override void OnExecute(Character source, object target) {
             Character friend = target as Character;
 

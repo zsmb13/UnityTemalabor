@@ -43,10 +43,6 @@ namespace Assets.Scripts.Model.Skills {
             return stats.ActionPoints > 0;
         }
 
-        protected override bool IsValidTarget(Character source, object target) {
-            return target is Character;
-        }
-
     }
 
 }

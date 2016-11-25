@@ -61,13 +61,10 @@ namespace Assets.Scripts.Model {
         }
 
         public void Init(ConstStats constStats, List<Skill> skills) {
-            // TODO get team number from somewhere
-
             this.ConstStats = constStats;
             this.Skills = skills;
             this.DeploySkill = new Deploy();
-
-            // TODO temporary for testing
+            
             this.TurnStats = new TurnStats();
             this.TurnStats.SelectedSkill = skills[0];
 
@@ -76,8 +73,16 @@ namespace Assets.Scripts.Model {
             this.GameStats.Deployed = false;
             this.GameStats.RemainingHealth = ConstStats.TotalHealth;
 
-            selectionCircle = transform.Find("Selection Circle").gameObject;
-            healthBar = transform.Find("Health Bar").GetComponent<HealthBar>();
+            if(transform.Find("Team 1 UI") != null) {
+                selectionCircle = transform.Find("Team 1 UI/Selection Circle").gameObject;
+                healthBar = transform.Find("Team 1 UI/Health Bar").GetComponent<HealthBar>();
+            } else if (transform.Find("Team 2 UI") != null){
+                selectionCircle = transform.Find("Team 2 UI/Selection Circle").gameObject;
+                healthBar = transform.Find("Team 2 UI/Health Bar").GetComponent<HealthBar>();
+            } else {
+                throw new UnityException("Nincs UI gameobject!!");
+            }
+
         }
 
         public void NotifyClicked() {
@@ -113,10 +118,10 @@ namespace Assets.Scripts.Model {
             return false;
         }
 
-        public void OnAttack(Character target, String trigger) {
+        public void OnAttack(Character target, string trigger, float rotationOffset = 0.0f) {
             Vector3 dir = target.transform.position - this.transform.position;
-            float step = 100000; //inf
-            Vector3 newDir = Vector3.RotateTowards(transform.forward, dir, step, 0.0F);
+            Vector3 newDir = Vector3.RotateTowards(transform.forward, dir, 100000, 0.0F);
+            newDir = Quaternion.Euler(0, rotationOffset, 0) * newDir;
             transform.rotation = Quaternion.LookRotation(newDir);
             animator.SetTrigger(trigger);
         }
@@ -154,9 +159,9 @@ namespace Assets.Scripts.Model {
             Result result = new Result(reducedDamage, damageType, false);
 
             GameStats.RemainingHealth -= reducedDamage;
-            healthBar.SetFillAmount(((float)GameStats.RemainingHealth) / ConstStats.TotalHealth);
+            healthBar.SetFillAmount(((float) GameStats.RemainingHealth) / ConstStats.TotalHealth);
 
-            if (GameStats.RemainingHealth <= 0) {
+            if(GameStats.RemainingHealth <= 0) {
                 StartCoroutine(AnimateDeath(animationDelay));
                 result.Killed = true;
             } else {

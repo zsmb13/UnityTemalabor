@@ -27,7 +27,7 @@ namespace Assets.Scripts.Model.Skills {
                 result = enemy.OnPhysicalDamage(damage, animationDelay);
             }
 
-            source.OnAttack(enemy,"Attack");
+            source.OnAttack(enemy, "Attack", 90.0f);
 
             source.AfterAttack(enemy, result);
             enemy.AfterDefense(source, result);
@@ -41,11 +41,6 @@ namespace Assets.Scripts.Model.Skills {
 
         public override bool IsAvailable(TurnStats stats) {
             return stats.ActionPoints > 0;
-        }
-
-        protected override bool IsValidTarget(Character source, object target) {
-            // TODO check range here
-            return true;
         }
 
     }

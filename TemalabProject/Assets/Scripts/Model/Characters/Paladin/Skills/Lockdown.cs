@@ -12,7 +12,7 @@ namespace Assets.Scripts.Model.Skills
         private static readonly string name = "Lockdown";
 
         private static readonly string description =
-            String.Format(" Increase the cooldown of a target unit by {0}.", enemycooldown);
+            String.Format(" Increase the cooldown of a target unit by 3.");
 
         private static readonly int enemycooldown = 3;
 
@@ -35,12 +35,6 @@ namespace Assets.Scripts.Model.Skills
         public override bool IsAvailable(TurnStats stats)
         {
             return stats.ActionPoints > 0;
-        }
-
-        protected override bool IsValidTarget(Character source, object target)
-        {
-            // TODO check range here
-            return true;
         }
 
     }

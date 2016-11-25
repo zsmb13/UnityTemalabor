@@ -17,6 +17,10 @@ namespace Assets.Scripts.Model.Skills {
             return false;
         }
 
+        protected override bool IsValidTarget(Character source, object target) {
+            return true;
+        }
+
     }
 
 }

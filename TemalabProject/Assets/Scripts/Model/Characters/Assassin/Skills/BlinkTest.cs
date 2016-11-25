@@ -69,10 +69,6 @@ namespace Assets.Scripts.Model.Skills {
             return stats.ActionPoints > 0;
         }
 
-        protected override bool IsValidTarget(Character source, object target) {
-            return target is Character;
-        }
-
         private void ResetAfterPathCompletedCallback(Character source) {
             var agent = source.GetComponent<NavMeshAgent>();
             agent.ResetPath();

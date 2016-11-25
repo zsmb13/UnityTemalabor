@@ -3,12 +3,13 @@ using System.Collections;
 
 public class Billboard : MonoBehaviour {
     
-    public CameraController cameraController;
+    private CameraController cameraController;
     private Transform MyCameraTransform;
     private Transform MyTransform;
     
     void Start() {
         MyTransform = this.transform;
+        cameraController = GameObject.FindGameObjectWithTag("CameraController").GetComponent<CameraController>();
         MyCameraTransform = cameraController.getCurrentCamera().transform;
         cameraController.CameraChangedEvent += CameraChangedCallback;
     }
