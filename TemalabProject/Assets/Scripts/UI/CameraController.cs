@@ -1,7 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+public delegate void CameraEvent(Camera newCamera);
+
+
 public class CameraController : MonoBehaviour {
+    public event CameraEvent CameraChangedEvent;
+
     public Camera[] cameras;
     private int currentCameraIndex;
 
@@ -17,7 +23,6 @@ public class CameraController : MonoBehaviour {
         //If any cameras were added to the controller, enable the first one
         if(cameras.Length > 0) {
             cameras[0].gameObject.SetActive(true);
-            //Debug.Log("Camera with name: " + cameras[0].camera.name + ", is now enabled");
         }
     }
 
@@ -32,10 +37,12 @@ public class CameraController : MonoBehaviour {
             currentCameraIndex = 0;
             cameras[currentCameraIndex].gameObject.SetActive(true);
         }
+        if(CameraChangedEvent != null) {
+            CameraChangedEvent(getCurrentCamera());
+        }
     }
 
-    public Camera getCamera() {
+    public Camera getCurrentCamera() {
         return cameras[currentCameraIndex];
     }
-
 }

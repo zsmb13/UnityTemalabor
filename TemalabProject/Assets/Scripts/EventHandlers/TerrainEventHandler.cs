@@ -8,7 +8,7 @@ namespace Assets.Scripts.Model {
 
         void OnMouseUp() {
             RaycastHit hit;
-            Camera camera = cameraController.getCamera();
+            Camera camera = cameraController.getCurrentCamera();
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
             if (GetComponent<TerrainCollider>().Raycast(ray, out hit, Mathf.Infinity)) {
                 GameTerrain terrain = GetComponent<GameTerrain>();

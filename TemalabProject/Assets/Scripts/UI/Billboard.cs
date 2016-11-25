@@ -2,18 +2,22 @@
 using System.Collections;
 
 public class Billboard : MonoBehaviour {
-
-    public Transform MyCameraTransform;
+    
+    public CameraController cameraController;
+    private Transform MyCameraTransform;
     private Transform MyTransform;
-
-    // Use this for initialization
+    
     void Start() {
         MyTransform = this.transform;
-        MyCameraTransform = Camera.main.transform;
+        MyCameraTransform = cameraController.getCurrentCamera().transform;
+        cameraController.CameraChangedEvent += CameraChangedCallback;
     }
-
-    // Update is called once per frame
+    
     void LateUpdate() {
         MyTransform.forward = MyCameraTransform.forward;
+    }
+
+    void CameraChangedCallback(Camera newCamera) {
+        MyCameraTransform = newCamera.transform;
     }
 }
