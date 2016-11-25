@@ -27,6 +27,7 @@ namespace Assets.Scripts.Model.Skills {
             source.TurnStats.ActionPoints--;
             source.TurnStats.RemainingMovement = 0;
             source.GameStats.Deployed = true;
+            source.showHealthBar();
         }
 
         public override float GetRange(Character source) {

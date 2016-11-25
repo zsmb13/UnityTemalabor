@@ -21,6 +21,7 @@ namespace Assets.Scripts.Model {
 
         private Animator animator;
         private GameObject selectionCircle;
+        private HealthBar healthBar;
 
         public virtual void Start() {
             animator = gameObject.transform.GetComponent<Animator>();
@@ -72,6 +73,7 @@ namespace Assets.Scripts.Model {
             this.GameStats.RemainingHealth = ConstStats.TotalHealth;
 
             selectionCircle = transform.Find("Selection Circle").gameObject;
+            healthBar = transform.Find("Health Bar").GetComponent<HealthBar>();
         }
 
         public void NotifyClicked() {
@@ -148,8 +150,9 @@ namespace Assets.Scripts.Model {
             Result result = new Result(reducedDamage, false);
 
             GameStats.RemainingHealth -= reducedDamage;
+            healthBar.SetFillAmount(((float)GameStats.RemainingHealth) / ConstStats.TotalHealth);
 
-            if(GameStats.RemainingHealth <= 0) {
+            if (GameStats.RemainingHealth <= 0) {
                 StartCoroutine(AnimateDeath(animationDelay));
                 result.Killed = true;
             } else {
@@ -220,6 +223,9 @@ namespace Assets.Scripts.Model {
             return ConstStats.DodgeChance >= rand;
         }
 
+        public void showHealthBar() {
+            healthBar.gameObject.SetActive(true);
+        }
     }
 
 }
