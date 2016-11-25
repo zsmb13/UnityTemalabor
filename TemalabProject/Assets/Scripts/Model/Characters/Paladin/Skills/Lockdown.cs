@@ -7,29 +7,29 @@ namespace Assets.Scripts.Model.Skills
 
     public class Lockdown : EnemySkill
     {
-
-        private static readonly int cooldown = 3;
-        private static readonly string name = "Lockdown";
-
-        private static readonly string description =
-            String.Format(" Increase the cooldown of a target unit by {0}.", enemycooldown);
-
+        //active attack specs.
+        private static readonly int cooldown = 4;
+        private static readonly string name = "Lockdown";        
         private static readonly int enemycooldown = 3;
-
+ 
+        private static readonly string description =
+            String.Format("Increase the cooldown of a target unit by {0}.", enemycooldown);
         public Lockdown() : base(name, description, cooldown) { }
 
         protected override void OnExecute(Character source, object target)
         {
             Character enemy = target as Character;
 
-            source.TurnStats.ActionPoints--;
+            //cooldown increasing
             enemy.GameStats.Cooldown += enemycooldown;
-            source.OnAttack(enemy, "Active");
+
+            source.TurnStats.ActionPoints--;
+            source.TurnStats.ActiveAbilityUsed = true;
         }
 
         public override float GetRange(Character source)
         {
-            return 100;
+            return 2.5f;
         }
 
         public override bool IsAvailable(TurnStats stats)
