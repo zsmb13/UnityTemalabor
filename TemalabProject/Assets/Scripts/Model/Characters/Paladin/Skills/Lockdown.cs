@@ -8,7 +8,7 @@ namespace Assets.Scripts.Model.Skills
     public class Lockdown : EnemySkill
     {
 
-        private static readonly int cooldown = 3; //TODO
+        private static readonly int cooldown = 3;
         private static readonly string name = "Lockdown";
 
         private static readonly string description =

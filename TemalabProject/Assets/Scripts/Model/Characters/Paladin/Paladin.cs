@@ -16,10 +16,10 @@ namespace Assets.Scripts.Model.Characters
             constStats.Name = "Rhoden";
             constStats.CharacterType = "Paladin";
             constStats.DodgeChance = 0;
-            constStats.MagicResist = 10;
-            constStats.PhysicalResist = 30;
+            constStats.MagicResist = 5;
+            constStats.PhysicalResist = 15;
             constStats.TotalHealth = 250;
-            constStats.TotalMovement = 5;
+            constStats.TotalMovement = 10.0f;
 
             List<Skill> skills = new List<Skill>();
             skills.Add(new Walk());
