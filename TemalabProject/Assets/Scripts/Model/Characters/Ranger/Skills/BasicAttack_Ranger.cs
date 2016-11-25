@@ -15,8 +15,6 @@ namespace Assets.Scripts.Model.Skills {
         private static readonly int damage = 70;
         private static readonly float animationDelay = 1.08f;
 
-        private static readonly float minDistance = 10;
-
         public BasicAttack_Ranger() : base(name, description, cooldown) { }
 
         protected override void OnExecute(Character source, object target) {
@@ -38,7 +36,7 @@ namespace Assets.Scripts.Model.Skills {
         }
 
         public override float GetRange(Character source) {
-            return 200;
+            return 15;
         }
 
         public override bool IsAvailable(TurnStats stats) {
@@ -46,11 +44,7 @@ namespace Assets.Scripts.Model.Skills {
         }
 
         protected override bool IsValidTarget(Character source, object target) {
-            if(target is Character) {
-                Character targetCharacter = target as Character;
-                return (source.gameObject.transform.position - targetCharacter.gameObject.transform.position).magnitude < minDistance;
-            }
-            return false;
+            return target is Character;
         }
 
     }
