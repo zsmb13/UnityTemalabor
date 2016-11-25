@@ -19,6 +19,10 @@ namespace Assets.Scripts.Model {
         }
 
         public void Execute(Character source, object target) {
+            if (!IsAvailable(source.TurnStats)) {
+                return;
+            }
+
             if (!HasRequiredTeam(source, target)) {
                 return; // invalid target team
             }
