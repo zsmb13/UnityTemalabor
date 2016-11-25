@@ -23,6 +23,10 @@ namespace Assets.Scripts.Model.Skills {
                 cameraController.switchToNextCamera();
             }
 
+            if(Input.GetKeyDown(KeyCode.O)) {
+                cameraController.ToggleOrtographicCamera();
+            }
+
             if(Input.GetKeyDown(KeyCode.D)) {
                 PressButton(endTurnButton1);
             }

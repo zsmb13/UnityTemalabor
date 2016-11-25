@@ -8,6 +8,9 @@ public delegate void CameraEvent(Camera newCamera);
 public class CameraController : MonoBehaviour {
     public event CameraEvent CameraChangedEvent;
 
+
+    public Camera MainCameraPerspective;
+    public Camera MainCameraOrtographic;
     public Camera[] cameras;
     private int currentCameraIndex;
 
@@ -44,5 +47,13 @@ public class CameraController : MonoBehaviour {
 
     public Camera getCurrentCamera() {
         return cameras[currentCameraIndex];
+    }
+
+    public void ToggleOrtographicCamera() {
+        //TODO olvashatóbb kóddá tenni, sorry
+        bool IsPerspective = cameras[0] == MainCameraPerspective;
+        cameras[0] = IsPerspective ? MainCameraOrtographic : MainCameraPerspective;
+        MainCameraPerspective.gameObject.SetActive(!IsPerspective);
+        MainCameraOrtographic.gameObject.SetActive(IsPerspective);
     }
 }
