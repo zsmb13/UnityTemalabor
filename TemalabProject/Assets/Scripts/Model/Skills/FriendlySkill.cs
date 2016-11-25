@@ -12,7 +12,7 @@ namespace Assets.Scripts.Model.Skills {
         protected sealed override bool HasRequiredTeam(Character source, object target) {
             var character = target as Character;
             if (character != null) {
-                return source.GameStats.Team != character.GameStats.Team;
+                return source.GameStats.Team == character.GameStats.Team;
             }
             return false;
         }

@@ -31,7 +31,7 @@ namespace Assets.Scripts.Model.Skills {
         }
 
         public override float GetRange(Character source) {
-            return 10000;
+            return -1;
         }
 
         public override bool IsAvailable(TurnStats turnStats) {

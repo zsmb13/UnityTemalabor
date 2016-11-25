@@ -20,7 +20,6 @@ namespace Assets.Scripts.Model.Skills
         protected override void OnExecute(Character source, object target)
         {
             Character enemy = target as Character;
-
             //cooldown increasing
             enemy.GameStats.Cooldown += enemycooldown;
 
