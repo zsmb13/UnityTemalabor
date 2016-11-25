@@ -20,7 +20,7 @@ namespace Assets.Scripts.Model.Skills {
         protected override void OnExecute(Character source, object target) {
             Character enemy = target as Character;
 
-            Result result = new Result(0, false);
+            Result result = new Result();
             if (enemy.TryPhysicalDodge()) {
                 enemy.OnDodge(0.5f);
             } else {

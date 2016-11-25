@@ -21,7 +21,7 @@ namespace Assets.Scripts.Model.Skills {
             // Passive bonus
             int bonusDamage = calculateBonus(source);
 
-            Result result = new Result(0, false);
+            Result result = new Result();
             if (enemy.TryPhysicalDodge()) {
                 enemy.OnDodge(0);
             }

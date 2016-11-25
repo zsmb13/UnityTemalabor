@@ -27,11 +27,11 @@ namespace Assets.Scripts.Model {
             animator = gameObject.transform.GetComponent<Animator>();
         }
 
-        public void AfterAttack(Character target, Result result) {
+        public virtual void AfterAttack(Character target, Result result) {
             // empty
         }
 
-        public void AfterDefense(Character source, Result result) {
+        public virtual void AfterDefense(Character source, Result result) {
             // empty
         }
 
@@ -138,20 +138,20 @@ namespace Assets.Scripts.Model {
 
         public Result OnMagicDamage(int damage, float animationDelay) {
             int reducedDamage = Math.Max(damage - ConstStats.MagicResist, 0);
-            return OnDamage(reducedDamage, animationDelay);
+            return OnDamage(reducedDamage, Result.MagicDamage, animationDelay);
         }
 
         public Result OnPhysicalDamage(int damage, float animationDelay) {
             int reducedDamage = Math.Max(damage - ConstStats.PhysicalResist, 0);
-            return OnDamage(reducedDamage, animationDelay);
+            return OnDamage(reducedDamage, Result.PhysicalDamage, animationDelay);
         }
 
         public Result OnPiercingDamage(int damage, float animationDelay) {
-            return OnDamage(damage, animationDelay);
+            return OnDamage(damage, Result.PiercingDamage, animationDelay);
         }
 
-        private Result OnDamage(int reducedDamage, float animationDelay) {
-            Result result = new Result(reducedDamage, false);
+        private Result OnDamage(int reducedDamage, int damageType, float animationDelay) {
+            Result result = new Result(reducedDamage, damageType, false);
 
             GameStats.RemainingHealth -= reducedDamage;
             healthBar.SetFillAmount(((float)GameStats.RemainingHealth) / ConstStats.TotalHealth);

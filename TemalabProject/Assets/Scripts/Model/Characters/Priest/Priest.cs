@@ -39,6 +39,12 @@ namespace Assets.Scripts.Model.Characters {
             return 0.27f;
         }
 
+        public override void AfterDefense(Character source, Result result) {
+            if (result.DamageDone > 0 && result.DamageType == Result.MagicDamage) {
+                source.OnMagicDamage(result.DamageDone, 0);
+            }
+        }
+
     }
 
 }
