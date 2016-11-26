@@ -8,11 +8,11 @@ namespace Assets.Scripts.Model.Skills
     public class BasicAttack_Paladin : EnemySkill
     {
 
-        private static readonly int cooldown = 2;
+        private static readonly int cooldown = 1;
         private static readonly string name = "Basic attack";
-        private static readonly string description = String.Format("Deal {0} damage to a target unit.", damage);
-
         private static readonly int damage = 60;
+        private static readonly string description = String.Format("Deal {0} damage to a target unit.", damage);
+        
         private static readonly float animationDelay = 1.0f; //TODO
 
         public BasicAttack_Paladin() : base(name, description, cooldown) { }

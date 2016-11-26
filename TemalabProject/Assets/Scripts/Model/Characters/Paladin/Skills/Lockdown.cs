@@ -9,7 +9,7 @@ namespace Assets.Scripts.Model.Skills
     {
 
         //active attack specs.
-        private static readonly int cooldown = 4;
+        private static readonly int cooldown = 3;
         private static readonly string name = "Lockdown";
         private static readonly string description = "Increase the cooldown of a target unit by 3.";
         private static readonly int enemycooldown = 3;
