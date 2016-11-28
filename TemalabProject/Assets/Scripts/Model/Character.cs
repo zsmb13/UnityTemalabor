@@ -233,7 +233,7 @@ namespace Assets.Scripts.Model {
             return ConstStats.DodgeChance >= rand;
         }
 
-        public bool TryPhysicalDodge() {
+        public virtual bool TryPhysicalDodge() {
             float rand = UnityEngine.Random.Range(0, 100);
             return ConstStats.DodgeChance >= rand;
         }

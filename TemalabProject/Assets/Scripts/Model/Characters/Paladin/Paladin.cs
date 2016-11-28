@@ -8,6 +8,8 @@ namespace Assets.Scripts.Model.Characters
 
     public class Paladin : Character
     {
+        //passive
+        private static readonly int physicalDodge = 25;
 
         public void Awake()
         {
@@ -43,6 +45,13 @@ namespace Assets.Scripts.Model.Characters
         protected override float GetDamagedDelay()
         {
             return 0.2f;
+        }
+
+        public override bool TryPhysicalDodge()
+        {
+            float rand = UnityEngine.Random.Range(0, 100);
+
+            return physicalDodge >= rand;
         }
     }
 }
