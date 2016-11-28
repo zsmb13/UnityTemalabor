@@ -211,7 +211,7 @@ namespace Assets.Scripts.Model {
             gameObject.SetActive(false);
         }
 
-        public void OnTurnStart() {
+        public virtual void OnTurnStart() {
             GameStats.Cooldown--;
 
             TurnStats.ActionPoints = 1;
@@ -220,7 +220,7 @@ namespace Assets.Scripts.Model {
             TurnStats.ActiveAbilityUsed = false;
         }
 
-        public void OnTurnEnd() {
+        public virtual void OnTurnEnd() {
             // empty
         }
 

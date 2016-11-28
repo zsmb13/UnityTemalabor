@@ -7,6 +7,8 @@ namespace Assets.Scripts.Model.Characters {
 
     public class Berserker : Character {
 
+        private static readonly double enragePercent = 0.4;
+
         public void Awake() {
             ConstStats constStats = new ConstStats();
 
@@ -37,6 +39,14 @@ namespace Assets.Scripts.Model.Characters {
 
         protected override float GetDamagedDelay() {
             return 0.2f;
+        }
+
+        public override void OnTurnStart() {
+            base.OnTurnStart();
+            if (GameStats.RemainingHealth < ConstStats.TotalHealth*enragePercent) {
+                Debug.Log("Berserker is enraged");
+                TurnStats.ActionPoints = 2;
+            }
         }
 
     }

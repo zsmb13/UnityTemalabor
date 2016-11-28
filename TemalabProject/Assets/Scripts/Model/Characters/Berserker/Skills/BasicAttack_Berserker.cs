@@ -10,9 +10,10 @@ namespace Assets.Scripts.Model.Skills {
         private static readonly string name = "Basic attack";
         private static readonly int damage = 60;
         private static readonly float range = 2.5f;
-        private static readonly double enrangePercent = 0.4;
-        private static readonly string description = String.Format("Deal {0} damage to a target unit. Below {1}% health, this character can attack twice",damage, enrangePercent*100);
-                
+
+        private static readonly string description =
+            "Deal 60 damage to a target unit. Below 40% health, this character can attack twice";
+
         private static readonly float animationDelay = 0.95f;
 
         public BasicAttack_Berserker() : base(name, description, cooldown) {}
@@ -30,20 +31,12 @@ namespace Assets.Scripts.Model.Skills {
             else {
                 result = enemy.OnPhysicalDamage(damage + bonusDamage, animationDelay);
             }
-            source.OnAttack(enemy,"Attack");
+            source.OnAttack(enemy, "Attack");
 
             source.AfterAttack(enemy, result);
             enemy.AfterDefense(source, result);
 
-            //Below enrangePercent Berserker can attack twice: hack with AcitveAbilityUsed boolean, so he can attack twice, but can not use active skill for 2nd action 
-            if (source.ConstStats.TotalHealth < source.ConstStats.TotalHealth * enrangePercent && source.TurnStats.ActiveAbilityUsed == false)
-            {
-                source.TurnStats.ActiveAbilityUsed = true;
-            }
-                else
-            {
-                source.TurnStats.ActionPoints--;
-            }
+            source.TurnStats.ActionPoints--;
         }
 
         private int calculateBonus(Character source) {
