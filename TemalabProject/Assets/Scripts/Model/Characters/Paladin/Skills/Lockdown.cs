@@ -10,9 +10,12 @@ namespace Assets.Scripts.Model.Skills
 
         //active attack specs.
         private static readonly int cooldown = 3;
+
         private static readonly string name = "Lockdown";
-        private static readonly string description = "Increase the cooldown of a target unit by 3.";
+        private static readonly float range = -1.0f;
         private static readonly int enemycooldown = 3;
+        private static readonly string description = String.Format("Increase the cooldown of a target unit by {0}.",enemycooldown);
+        
 
 
         public Lockdown() : base(name, description, cooldown) { }
@@ -25,11 +28,12 @@ namespace Assets.Scripts.Model.Skills
 
             source.TurnStats.ActionPoints--;
             source.TurnStats.ActiveAbilityUsed = true;
+            source.Animate("Active");
         }
 
         public override float GetRange(Character source)
         {
-            return 2.5f;
+            return range;
         }
 
         public override bool IsAvailable(TurnStats stats)

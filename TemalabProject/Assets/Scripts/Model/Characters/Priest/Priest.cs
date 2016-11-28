@@ -15,7 +15,7 @@ namespace Assets.Scripts.Model.Characters {
                 MagicResist = 15,
                 PhysicalResist = 0,
                 TotalHealth = 200,
-                TotalMovement = 3
+                TotalMovement = 5.0f,
             };
 
             var skills = new List<Skill> {

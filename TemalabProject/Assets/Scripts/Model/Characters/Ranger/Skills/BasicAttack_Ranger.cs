@@ -10,13 +10,16 @@ namespace Assets.Scripts.Model.Skills {
 
         private static readonly int cooldown = 2;
         private static readonly string name = "Basic attack";
-        private static readonly string description = "Deal 70 damage to a target unit.";
-
         private static readonly int damage = 70;
+        private static readonly float range = 15.0f;
+        private static readonly string description = String.Format("Deal {0} damage to a target unit.",damage);
+
+        
         private static readonly float animationDelay = 1.08f;
 
         public BasicAttack_Ranger() : base(name, description, cooldown) { }
 
+        //TODO implement passive skills
         protected override void OnExecute(Character source, object target) {
             Character enemy = target as Character;
 
@@ -36,7 +39,7 @@ namespace Assets.Scripts.Model.Skills {
         }
 
         public override float GetRange(Character source) {
-            return 15;
+            return range;
         }
 
         public override bool IsAvailable(TurnStats stats) {

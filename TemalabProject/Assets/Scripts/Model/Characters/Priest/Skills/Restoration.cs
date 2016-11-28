@@ -8,14 +8,15 @@ namespace Assets.Scripts.Model.Skills {
 
         private static readonly int cooldown = 4;
         private static readonly string name = "Restoration";
-        private static readonly string description = "Restore 150 health on a friendly unit.";
-
         private static readonly int healAmount = 150;
+        private static readonly float range = -1.0f;
+
+        private static readonly string description = String.Format("Restore {0} health on a friendly unit.", healAmount);
 
         public Restoration() : base(name, description, cooldown) {}
 
         public override float GetRange(Character source) {
-            return -1;
+            return range;
         }
 
         public override bool IsAvailable(TurnStats turnStats) {

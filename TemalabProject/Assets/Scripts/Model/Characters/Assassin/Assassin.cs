@@ -9,19 +9,19 @@ namespace Assets.Scripts.Model.Characters {
 
         public void Awake() {
             var constStats = new ConstStats();
-            // TODO use actual stats
+
             constStats.Name = "Clementine";
             constStats.CharacterType = "Assassin";
-            constStats.DodgeChance = 0;
-            constStats.MagicResist = 15;
-            constStats.PhysicalResist = 10;
+            constStats.DodgeChance = 30;
+            constStats.MagicResist = 10;
+            constStats.PhysicalResist = 0;
             constStats.TotalHealth = 200;
-            constStats.TotalMovement = 7;
+            constStats.TotalMovement = 12.0f;
 
             var skills = new List<Skill>();
             skills.Add(new Walk());
             skills.Add(new BasicAttack_Assassin());
-            skills.Add(new BlinkTest()); // TODO remove
+            skills.Add(new BlinkTest()); // TODO remove, miért?
 
             Init(constStats, skills);
         }

@@ -9,13 +9,13 @@ namespace Assets.Scripts.Model.Skills {
         private static readonly int cooldown = 3;
         private static readonly string name = "Blink";
 
+        private static readonly int damage = 30;
+        private static readonly float range = 8.0f;
+
         private static readonly string description =
             String.Format(
                 "Moving in the shadows, this character \njumps instantly to a target \nunit in {0} cells range and \ndeal {1} piercing damage. \nFinishing an enemy resets \nthe cooldown of this character. ",
                 range, damage);
-
-        private static readonly int damage = 30;
-        private static readonly float range = 8;
 
         //TMP teszt
         float tmpSpeed;
@@ -29,7 +29,6 @@ namespace Assets.Scripts.Model.Skills {
 
             var agent = source.GetComponent<NavMeshAgent>();
 
-
             //Oda "teleportál"
             tmpSpeed = agent.speed;
             tmpAcc = agent.acceleration;
@@ -38,8 +37,8 @@ namespace Assets.Scripts.Model.Skills {
             agent.speed = 50;
             agent.stoppingDistance = 1.5f;
 
-
-            agent.SetDestination(enemy.transform.position);
+            //a két karakter közötti vektor irányában egységnyivel arrébb áll meg, hogy ne legyen a két karakter "egymásban"
+            agent.SetDestination(enemy.transform.position - Vector3.Normalize(enemy.transform.position - source.transform.position));
             source.OnWalk();
             source.OnAttack(enemy, "Active");
 
@@ -58,7 +57,9 @@ namespace Assets.Scripts.Model.Skills {
             // afterattack
             // afterdefense
 
+            source.TurnStats.ActiveAbilityUsed = true;
             source.TurnStats.ActionPoints--;
+            
         }
 
         public override float GetRange(Character source) {

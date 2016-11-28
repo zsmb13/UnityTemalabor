@@ -9,14 +9,14 @@ namespace Assets.Scripts.Model.Characters {
 
         public void Awake() {
             ConstStats constStats = new ConstStats();
-            // TODO use actual stats
+
             constStats.Name = "Gregor";
             constStats.CharacterType = "Berserker";
             constStats.DodgeChance = 10;
-            constStats.MagicResist = 15;
-            constStats.PhysicalResist = 5;
+            constStats.MagicResist = 0;
+            constStats.PhysicalResist = 0;
             constStats.TotalHealth = 300;
-            constStats.TotalMovement = 5;
+            constStats.TotalMovement = 8.0f;
 
             List<Skill> skills = new List<Skill>();
             skills.Add(new Walk());

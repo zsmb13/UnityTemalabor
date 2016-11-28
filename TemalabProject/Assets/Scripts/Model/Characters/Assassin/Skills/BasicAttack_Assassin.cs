@@ -10,9 +10,11 @@ namespace Assets.Scripts.Model.Skills {
 
         private static readonly int cooldown = 2;
         private static readonly string name = "Basic attack";
-        private static readonly string description = "Deal 40 damage to a target unit.";
+        private static readonly int damage = 70;
+        private static readonly float range = 2.5f;
+        private static readonly string description = String.Format("Deal {0} damage to a target unit.",damage);
 
-        private static readonly int damage = 40;
+        
         private static readonly float animationDelay = 1.08f;
 
         public BasicAttack_Assassin() : base(name, description, cooldown) { }
@@ -33,10 +35,12 @@ namespace Assets.Scripts.Model.Skills {
             enemy.AfterDefense(source, result);
 
             source.TurnStats.ActionPoints--;
+
+            //TODO passive skills
         }
 
         public override float GetRange(Character source) {
-            return 10;
+            return range;
         }
 
         public override bool IsAvailable(TurnStats stats) {

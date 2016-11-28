@@ -9,18 +9,19 @@ namespace Assets.Scripts.Model.Characters {
 
         public void Awake() {
             var constStats = new ConstStats();
-            // TODO use actual stats
+
             constStats.Name = "Kyra";
             constStats.CharacterType = "Pyromancer";
-            constStats.DodgeChance = 50; // TODO use real value, 50 is for testing
+            constStats.DodgeChance = 0;
             constStats.MagicResist = 15;
-            constStats.PhysicalResist = 15;
+            constStats.PhysicalResist = 5;
             constStats.TotalHealth = 200;
-            constStats.TotalMovement = 5;
+            constStats.TotalMovement = 8.0f;
 
             var skills = new List<Skill>();
             skills.Add(new Walk());
             skills.Add(new BasicAttack_Pyromancer());
+            //todo implement hellfire
             skills.Add(new Walk());
 
             Init(constStats, skills);

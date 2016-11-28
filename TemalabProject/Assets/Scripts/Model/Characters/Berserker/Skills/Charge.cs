@@ -7,17 +7,23 @@ namespace Assets.Scripts.Model.Skills {
 
         private static readonly int cooldown = 2;
         private static readonly string name = "Charge";
-        private static readonly string description = "This character gets +2 movement this round.";
+        private static readonly int extramovement = 2;
+        private static readonly float range = -1.0f;
+        private static readonly string description = String.Format("This character gets +{0} movement this round.",extramovement);
 
         public Charge() : base(name, description, cooldown) {}
 
         protected override void OnExecute(Character source, object target) {
-            source.TurnStats.ActionPoints--;
-            source.TurnStats.RemainingMovement += 2;
+            source.TurnStats.RemainingMovement += extramovement;
+
+            source.Animate("Active");
+            source.TurnStats.ActionPoints--;            
+            source.TurnStats.ActiveAbilityUsed = true;
+            
         }
 
         public override float GetRange(Character source) {
-            return -1;
+            return range;
         }
 
         public override bool IsAvailable(TurnStats turnStats) {

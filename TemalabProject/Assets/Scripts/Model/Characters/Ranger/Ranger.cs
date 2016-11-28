@@ -17,7 +17,7 @@ namespace Assets.Scripts.Model.Characters {
             constStats.MagicResist = 0;
             constStats.PhysicalResist = 0;
             constStats.TotalHealth = 200;
-            constStats.TotalMovement = 5;
+            constStats.TotalMovement = 5.0f;
 
             List<Skill> skills = new List<Skill>();
             skills.Add(new Walk());
