@@ -25,7 +25,6 @@ namespace Assets.Scripts.Model {
         public int RemainingHealth {
             get {
                 return remainingHealth;
-                ;
             }
             set {
                 if (value < 0) {

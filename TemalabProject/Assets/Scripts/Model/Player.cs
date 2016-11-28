@@ -2,7 +2,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-
 namespace Assets.Scripts.Model {
 
     public class Player : MonoBehaviour {
@@ -13,11 +12,21 @@ namespace Assets.Scripts.Model {
         public int teamID;
         public List<Character> characters;
 
+        private int deadCount = 0;
         private int deployedCount = 0;
 
         void Start() {
             foreach (var c in characters) {
                 c.GameStats.Team = teamID;
+                c.CharacterKilled += characterKilled;
+            }
+        }
+
+        private void characterKilled(Character c) {
+            deadCount++;
+
+            if (deadCount == maxDeployed) {
+                Debug.Log("Player " + teamID + " LOST the game because they're a loser.");
             }
         }
 

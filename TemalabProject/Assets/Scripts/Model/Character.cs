@@ -9,6 +9,7 @@ namespace Assets.Scripts.Model {
     public abstract class Character : MonoBehaviour {
 
         public event CharacterEvent CharacterArrivedEvent;
+        public event CharacterEvent CharacterKilled;
 
         public ClickManager clickManager;
 
@@ -46,10 +47,11 @@ namespace Assets.Scripts.Model {
         public List<Skill> GetSkills() {
             List<Skill> skills = new List<Skill>();
 
-            if(GameStats.Deployed) {
+            if (GameStats.Deployed) {
                 // TODO make sure only the proper skills are active somewhere
                 skills.AddRange(Skills);
-            } else {
+            }
+            else {
                 skills.Add(DeploySkill);
             }
 
@@ -64,7 +66,7 @@ namespace Assets.Scripts.Model {
             this.ConstStats = constStats;
             this.Skills = skills;
             this.DeploySkill = new Deploy();
-            
+
             this.TurnStats = new TurnStats();
             this.TurnStats.SelectedSkill = skills[0];
 
@@ -73,16 +75,17 @@ namespace Assets.Scripts.Model {
             this.GameStats.Deployed = false;
             this.GameStats.RemainingHealth = ConstStats.TotalHealth;
 
-            if(transform.Find("Team 1 UI") != null) {
+            if (transform.Find("Team 1 UI") != null) {
                 selectionCircle = transform.Find("Team 1 UI/Selection Circle").gameObject;
                 healthBar = transform.Find("Team 1 UI/Health Bar").GetComponent<HealthBar>();
-            } else if (transform.Find("Team 2 UI") != null){
+            }
+            else if (transform.Find("Team 2 UI") != null) {
                 selectionCircle = transform.Find("Team 2 UI/Selection Circle").gameObject;
                 healthBar = transform.Find("Team 2 UI/Health Bar").GetComponent<HealthBar>();
-            } else {
+            }
+            else {
                 throw new UnityException("Nincs UI gameobject!!");
             }
-
         }
 
         public void NotifyClicked() {
@@ -94,13 +97,12 @@ namespace Assets.Scripts.Model {
         }
 
         private IEnumerator AnimateWalk() {
-
             animator.SetBool("Moving", true);
 
             yield return new WaitUntil(PathCompleted);
 
             animator.SetBool("Moving", false);
-            if(CharacterArrivedEvent != null) {
+            if (CharacterArrivedEvent != null) {
                 CharacterArrivedEvent(this);
             }
         }
@@ -108,9 +110,9 @@ namespace Assets.Scripts.Model {
         private bool PathCompleted() {
             NavMeshAgent agent = GetComponent<NavMeshAgent>();
 
-            if(!agent.pathPending) {
-                if(agent.remainingDistance <= agent.stoppingDistance) {
-                    if(!agent.hasPath || agent.velocity.sqrMagnitude == 0f) {
+            if (!agent.pathPending) {
+                if (agent.remainingDistance <= agent.stoppingDistance) {
+                    if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f) {
                         return true;
                     }
                 }
@@ -121,7 +123,7 @@ namespace Assets.Scripts.Model {
         public void OnAttack(Character target, string trigger, float rotationOffset = 0.0f) {
             Vector3 dir = target.transform.position - this.transform.position;
             Vector3 newDir = Vector3.RotateTowards(transform.forward, dir, 100000, 0.0F);
-            newDir = Quaternion.Euler(0, rotationOffset, 0) * newDir;
+            newDir = Quaternion.Euler(0, rotationOffset, 0)*newDir;
             transform.rotation = Quaternion.LookRotation(newDir);
             animator.SetTrigger(trigger);
         }
@@ -159,12 +161,16 @@ namespace Assets.Scripts.Model {
             Result result = new Result(reducedDamage, damageType, false);
 
             GameStats.RemainingHealth -= reducedDamage;
-            healthBar.SetFillAmount(((float) GameStats.RemainingHealth) / ConstStats.TotalHealth);
+            healthBar.SetFillAmount(((float) GameStats.RemainingHealth)/ConstStats.TotalHealth);
 
-            if(GameStats.RemainingHealth <= 0) {
+            if (GameStats.RemainingHealth == 0) {
                 StartCoroutine(AnimateDeath(animationDelay));
                 result.Killed = true;
-            } else {
+                if (CharacterKilled != null) {
+                    CharacterKilled(this);
+                }
+            }
+            else {
                 StartCoroutine(AnimateDamage(animationDelay));
             }
 
@@ -183,7 +189,7 @@ namespace Assets.Scripts.Model {
         }
 
         private IEnumerator WaitForAnimation(Animation animation) {
-            do yield return null; while(animation.isPlaying);
+            do yield return null; while (animation.isPlaying);
         }
 
         protected abstract float GetDeathDelay();
@@ -235,6 +241,7 @@ namespace Assets.Scripts.Model {
         public void showHealthBar() {
             healthBar.gameObject.SetActive(true);
         }
+
     }
 
 }

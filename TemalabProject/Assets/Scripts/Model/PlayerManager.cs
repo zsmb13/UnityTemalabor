@@ -10,7 +10,6 @@ namespace Assets.Scripts.Model {
         public Player player1;
         public Player player2;
 
-
         public Player GetPlayerByTeamID(int teamID) {
             return teamID == 1 ? player1 : player2;
         }
