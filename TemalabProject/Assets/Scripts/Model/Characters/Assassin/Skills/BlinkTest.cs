@@ -9,7 +9,7 @@ namespace Assets.Scripts.Model.Skills {
         private static readonly int cooldown = 3;
         private static readonly string name = "Blink";
 
-        private static readonly int damage = 30;
+        private static readonly int damage = 70;
         private static readonly float range = 8.0f;
 
         private static readonly string description =
