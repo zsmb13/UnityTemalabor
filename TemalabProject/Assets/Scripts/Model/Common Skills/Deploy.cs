@@ -5,6 +5,7 @@ using System.Text;
 using UnityEngine;
 
 namespace Assets.Scripts.Model.Skills {
+
     public class Deploy : MiscSkill {
 
         private static readonly int cooldown = 0;
@@ -22,7 +23,10 @@ namespace Assets.Scripts.Model.Skills {
                 targetPosition.x,
                 transform.position.y,
                 targetPosition.z
-            );
+                );
+
+            NavMeshAgent agent = source.gameObject.GetComponent<NavMeshAgent>();
+            agent.enabled = true;
 
             source.TurnStats.ActionPoints--;
             source.TurnStats.RemainingMovement = 0;
@@ -60,4 +64,5 @@ namespace Assets.Scripts.Model.Skills {
         }
 
     }
+
 }
