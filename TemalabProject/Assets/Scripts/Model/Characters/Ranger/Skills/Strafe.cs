@@ -29,7 +29,7 @@ namespace Assets.Scripts.Model.Skills {
 
             float distance = Vector3.Distance(enemy.transform.position, source.transform.position);
             //additional animation delay based on projectile path
-            float animationAndDistanceDelay = animationDelay + distance / shootAngle;
+            float animationAndDistanceDelay = animationDelay + distance * 0.04f + shootAngle * 0.02f;
 
             Result result = new Result();
             result = enemy.OnPiercingDamage(damage, animationAndDistanceDelay);
