@@ -4,25 +4,25 @@ using System;
 
 namespace Assets.Scripts.Model.Skills {
 
-    public class BlinkTest : EnemySkill {
+    public class Blink : EnemySkill {
 
         private static readonly int cooldown = 3;
         private static readonly string name = "Blink";
 
-        private static readonly int damage = 70;
-        private static readonly float range = 8.0f;
+        private static readonly int damage = 40;
+        private static readonly float range = 6.0f;
 
         private static readonly string description =
             String.Format(
-                "Moving in the shadows, this character \njumps instantly to a target \nunit in {0} cells range and \ndeal {1} piercing damage. \nFinishing an enemy resets \nthe cooldown of this character. ",
+                "Moving in the shadows, this character jumps instantly to a target unit in {0} cells range and deal {1} piercing damage. Finishing an enemy resets the cooldown of this character. ",
                 range, damage);
 
-        //TMP teszt
+        //visszaállításhoz
         float tmpSpeed;
         float tmpAcc;
         float tmpStop;
 
-        public BlinkTest() : base(name, description, cooldown) {}
+        public Blink() : base(name, description, cooldown) {}
 
         protected override void OnExecute(Character source, object target) {
             Character enemy = target as Character;
@@ -39,14 +39,11 @@ namespace Assets.Scripts.Model.Skills {
 
             //a két karakter közötti vektor irányában egységnyivel arrébb áll meg, hogy ne legyen a két karakter "egymásban"
             agent.SetDestination(enemy.transform.position - Vector3.Normalize(enemy.transform.position - source.transform.position));
-            source.OnWalk();
             source.OnAttack(enemy, "Active");
 
             source.CharacterArrivedEvent += ResetAfterPathCompletedCallback;
 
-
             Result result = enemy.OnPiercingDamage(damage, 1.0f);
-
 
             //Lecseréli a shadert "árnyék" jellegűre
             //source.transform.Find("Kachujin_G_Rosales/Kachujin").GetComponent<SkinnedMeshRenderer>().material.shader = Shader.Find("Particles/Multiply");
@@ -54,12 +51,16 @@ namespace Assets.Scripts.Model.Skills {
             //source.transform.Find("Kachujin_G_Rosales/Kachujin").GetComponent<SkinnedMeshRenderer>().material.shader = Shader.Find("Standard (Specular setup)");
 
 
-            // afterattack
-            // afterdefense
+            source.AfterAttack(enemy, result);
+            enemy.AfterDefense(source, result);
 
             source.TurnStats.ActiveAbilityUsed = true;
             source.TurnStats.ActionPoints--;
-            
+
+            //if it does kill, lower the cooldown
+            if(result.Killed == true) { 
+                source.GameStats.Cooldown -= cooldown;
+            }
         }
 
         public override float GetRange(Character source) {

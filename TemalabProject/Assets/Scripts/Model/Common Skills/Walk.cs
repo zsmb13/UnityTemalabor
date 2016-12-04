@@ -18,7 +18,6 @@ namespace Assets.Scripts.Model.Skills {
             GameTerrain terrain = target as GameTerrain;
 
             float distance = (terrain.LastClickPosition - source.transform.position).magnitude;
-            Debug.Log(distance + " " + source.TurnStats.RemainingMovement);
             if (distance > source.TurnStats.RemainingMovement) {
                 return;
             }
