@@ -46,7 +46,7 @@ namespace Assets.Scripts.Model.Characters {
         }
 
         public override void AfterAttack(Character target, Result result) {
-            base.AfterAttack(target, result);
+            base.AfterAttack(target, result); //Semmit nem csinál atm, de azért itt hagyom inkább.
             tryBackstab(target);
         }
 

@@ -68,7 +68,7 @@ namespace Assets.Scripts.Model.Skills {
         }
 
         public override bool IsAvailable(TurnStats stats) {
-            return stats.ActionPoints > 0;
+            return stats.ActionPoints > 0 && !stats.ActiveAbilityUsed;
         }
 
         private void ResetAfterPathCompletedCallback(Character source) {

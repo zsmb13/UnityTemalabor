@@ -21,8 +21,7 @@ namespace Assets.Scripts.Model.Characters {
             var skills = new List<Skill>();
             skills.Add(new Walk());
             skills.Add(new BasicAttack_Pyromancer());
-            //todo implement hellfire
-            skills.Add(new Walk());
+            skills.Add(new Hellfire());
 
             Init(constStats, skills);
         }
@@ -37,6 +36,21 @@ namespace Assets.Scripts.Model.Characters {
 
         protected override float GetDamagedDelay() {
             return 0.4f;
+        }
+
+
+        int flameAuraDamage=30;
+
+        public override void AfterDefense(Character source, Result result) {
+            base.AfterDefense(source, result); //Semmit nem csinál atm, de azért itt hagyom inkább.
+            if(isInAuraRange(source)) {
+                source.OnMagicDamage(flameAuraDamage, 0);
+            }
+        }
+
+        private bool isInAuraRange(Character target) {
+            var dist = (gameObject.transform.position - target.gameObject.transform.position).sqrMagnitude;
+            return dist < 4.0f;
         }
 
     }

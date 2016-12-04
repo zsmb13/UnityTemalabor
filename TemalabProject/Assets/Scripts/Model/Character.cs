@@ -48,7 +48,6 @@ namespace Assets.Scripts.Model {
             List<Skill> skills = new List<Skill>();
 
             if (GameStats.Deployed) {
-                // TODO make sure only the proper skills are active somewhere
                 skills.AddRange(Skills);
             }
             else {

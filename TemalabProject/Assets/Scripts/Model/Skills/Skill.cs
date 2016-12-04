@@ -41,7 +41,7 @@ namespace Assets.Scripts.Model {
             source.GameStats.Cooldown += Cooldown;
         }
 
-        private bool IsInRange(Character source, object target) {
+        protected bool IsInRange(Character source, object target) {
             float range = GetRange(source);
             if (range < 0) {
                 return true;
