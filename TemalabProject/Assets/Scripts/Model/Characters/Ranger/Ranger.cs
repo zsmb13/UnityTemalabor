@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Model.Skills;
-using System;
 
 namespace Assets.Scripts.Model.Characters {
 
     public class Ranger : Character {
+
+        public GameObject projectile;
+        public Transform projectileSpawn;
 
         public void Awake() {
             ConstStats constStats = new ConstStats();
@@ -21,7 +22,7 @@ namespace Assets.Scripts.Model.Characters {
 
             List<Skill> skills = new List<Skill>();
             skills.Add(new Walk());
-            skills.Add(new BasicAttack_Ranger());
+            skills.Add(new BasicAttack_Ranger(projectile, projectileSpawn));
             // TODO: implement strafe
             skills.Add(new Walk());
 
@@ -29,15 +30,15 @@ namespace Assets.Scripts.Model.Characters {
         }
 
         protected override float GetDamagedDelay() {
-            return 2;
+            return 0.2f;
         }
 
         protected override float GetDeathDelay() {
-            return 2;
+            return 0.2f;
         }
 
         protected override float GetDodgeDelay() {
-            return 2;
+            return 0.2f;
         }
     }
 }

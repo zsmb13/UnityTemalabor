@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Assets.Scripts.Model;
+using UnityEngine;
+using System.Collections;
 
 namespace Assets.Scripts.Model.Skills {
 
@@ -13,29 +11,43 @@ namespace Assets.Scripts.Model.Skills {
         private static readonly int damage = 70;
         private static readonly float range = 15.0f;
         private static readonly string description = String.Format("Deal {0} damage to a target unit.",damage);
+        private GameObject projectile;
+        private Transform projectileSpawn;
 
         
-        private static readonly float animationDelay = 1.08f;
+        private static readonly float animationDelay = 3;
 
-        public BasicAttack_Ranger() : base(name, description, cooldown) { }
+        public BasicAttack_Ranger(GameObject projectile, Transform projectileSpawn) : base(name, description, cooldown) {
+            this.projectile = projectile;
+            this.projectileSpawn = projectileSpawn;
+        }
 
-        //TODO implement passive skills
+        //TODO: implement passive skills
         protected override void OnExecute(Character source, object target) {
             Character enemy = target as Character;
 
+            float distance = Vector3.Distance(enemy.transform.position, source.transform.position);
+            float animationAndDistanceDelay = animationDelay + distance / 7;
+
             Result result = new Result();
             if (enemy.TryPhysicalDodge()) {
-                enemy.OnDodge(0.5f);
+                enemy.OnDodge(animationAndDistanceDelay);
             } else {
-                result = enemy.OnPiercingDamage(damage, animationDelay);
+                result = enemy.OnPiercingDamage(damage, animationAndDistanceDelay);
             }
 
-            source.OnAttack(enemy, "Attack");
-
+            shootProjectile(source.transform, enemy.transform);
+            source.OnAttack(enemy, "Attack", 90);
+            
             source.AfterAttack(enemy, result);
             enemy.AfterDefense(source, result);
 
             source.TurnStats.ActionPoints--;
+        }
+
+        private void shootProjectile(Transform source, Transform target) {
+            GameObject arrow = GameObject.Instantiate(projectile, projectileSpawn.position, Quaternion.identity, source) as GameObject;
+            arrow.GetComponent<Projectile>().Launch(target.position, 50, animationDelay);
         }
 
         public override float GetRange(Character source) {
