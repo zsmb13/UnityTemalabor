@@ -24,7 +24,7 @@ namespace Assets.Scripts.Model.Characters {
             skills.Add(new Walk());
             skills.Add(new BasicAttack_Ranger(projectile, projectileSpawn));
             // TODO: implement strafe
-            skills.Add(new Walk());
+            skills.Add(new Strafe(projectile, projectileSpawn));
 
             Init(constStats, skills);
         }
