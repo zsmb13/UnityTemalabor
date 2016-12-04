@@ -24,9 +24,10 @@ namespace Assets.Scripts.Model {
 
         private void characterKilled(Character c) {
             deadCount++;
-
+            
             if (deadCount == maxDeployed) {
                 Debug.Log("Player " + teamID + " LOST the game because they're a loser.");
+                turnManager.OnTeamFallen(teamID);
             }
         }
 
@@ -56,6 +57,10 @@ namespace Assets.Scripts.Model {
                     deployedCount++;
                 }
             }
+        }
+
+        public void OnWinTheGame() {
+            characters.ForEach(c => c.Animate("Victory"));
         }
 
     }

@@ -14,6 +14,10 @@ namespace Assets.Scripts.Model {
             return teamID == 1 ? player1 : player2;
         }
 
+        public Player GetPlayerByEnemyTeamID(int enemyTeamID) {
+            return enemyTeamID == 1 ? player2 : player1;
+        }
+
     }
 
 }

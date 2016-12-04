@@ -37,6 +37,10 @@ namespace Assets.Scripts.Model {
             CurrentTeam = (CurrentTeam == 1) ? 2 : 1;
         }
 
+        public void OnTeamFallen(int teamID) {
+            playerManager.GetPlayerByEnemyTeamID(teamID).OnWinTheGame();
+        }
+
     }
 
 }
