@@ -40,6 +40,7 @@ namespace Assets.Scripts.Model.Skills {
             source.AfterAttack(enemy, result);
             enemy.AfterDefense(source, result);
 
+            source.TurnStats.ActiveAbilityUsed = true;
             source.TurnStats.ActionPoints--;
         }
 
