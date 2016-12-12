@@ -28,6 +28,10 @@ namespace Assets.Scripts.Model {
             animator = gameObject.transform.GetComponent<Animator>();
         }
 
+        public virtual void Update() {
+            updateHealthBar();
+        }
+
         public virtual void AfterAttack(Character target, Result result) {
             // empty
         }
@@ -160,7 +164,6 @@ namespace Assets.Scripts.Model {
             Result result = new Result(reducedDamage, damageType, false);
 
             GameStats.RemainingHealth -= reducedDamage;
-            healthBar.SetFillAmount(((float) GameStats.RemainingHealth)/ConstStats.TotalHealth);
 
             if (GameStats.RemainingHealth == 0) {
                 StartCoroutine(AnimateDeath(animationDelay));
@@ -239,6 +242,10 @@ namespace Assets.Scripts.Model {
 
         public void showHealthBar() {
             healthBar.gameObject.SetActive(true);
+        }
+
+        public void updateHealthBar() {
+            healthBar.SetFillAmount(((float)GameStats.RemainingHealth) / ConstStats.TotalHealth);
         }
 
     }
