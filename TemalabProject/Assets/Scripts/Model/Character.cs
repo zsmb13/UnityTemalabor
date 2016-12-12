@@ -23,13 +23,14 @@ namespace Assets.Scripts.Model {
         private Animator animator;
         private GameObject selectionCircle;
         private HealthBar healthBar;
+        private CooldownBar cooldownBar;
 
         public virtual void Start() {
             animator = gameObject.transform.GetComponent<Animator>();
         }
 
         public virtual void Update() {
-            updateHealthBar();
+            updateInfoBars();
         }
 
         public virtual void AfterAttack(Character target, Result result) {
@@ -81,10 +82,12 @@ namespace Assets.Scripts.Model {
             if (transform.Find("Team 1 UI") != null) {
                 selectionCircle = transform.Find("Team 1 UI/Selection Circle").gameObject;
                 healthBar = transform.Find("Team 1 UI/Health Bar").GetComponent<HealthBar>();
+                cooldownBar = transform.Find("Team 1 UI/Cooldown Bar").GetComponent<CooldownBar>();
             }
             else if (transform.Find("Team 2 UI") != null) {
                 selectionCircle = transform.Find("Team 2 UI/Selection Circle").gameObject;
                 healthBar = transform.Find("Team 2 UI/Health Bar").GetComponent<HealthBar>();
+                cooldownBar = transform.Find("Team 2 UI/Cooldown Bar").GetComponent<CooldownBar>();
             }
             else {
                 throw new UnityException("Nincs UI gameobject!!");
@@ -240,12 +243,14 @@ namespace Assets.Scripts.Model {
             return ConstStats.DodgeChance >= rand;
         }
 
-        public void showHealthBar() {
+        public void showInfoBars() {
             healthBar.gameObject.SetActive(true);
+            cooldownBar.gameObject.SetActive(true);
         }
 
-        public void updateHealthBar() {
+        public void updateInfoBars() {
             healthBar.SetFillAmount(((float)GameStats.RemainingHealth) / ConstStats.TotalHealth);
+            cooldownBar.SetFillAmount(((float)GameStats.Cooldown) / 6.0f);
         }
 
     }

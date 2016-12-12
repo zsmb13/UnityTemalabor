@@ -13,7 +13,8 @@ public class HealthBar : MonoBehaviour {
 	}
 	
 	public void SetFillAmount(float currentPerMaxHealth) {
-        healthBarImage.fillAmount = currentPerMaxHealth;
+        if (healthBarImage != null)
+            healthBarImage.fillAmount = currentPerMaxHealth;
     }
 
     // Update is called once per frame
